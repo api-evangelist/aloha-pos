@@ -2,28 +2,53 @@ aid: aloha-pos
 url: https://raw.githubusercontent.com/api-evangelist/aloha-pos/refs/heads/main/apis.yml
 name: Aloha POS
 x-type: company
-description: >-
-  Aloha (NCR Voyix) is a leading enterprise restaurant POS platform with cloud capabilities, gift card management, loyalty, and mobile ordering APIs.
+description: Aloha POS is a restaurant point-of-sale platform from NCR Voyix. The NCR Voyix Developer
+  Experience exposes APIs for Aloha (cloud and on-premise) covering site, store, menu, order, payment,
+  and reporting integrations as part of the broader NCR Voyix Commerce Platform.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - POS
-  - Restaurant
-  - NCR
-  - Hospitality
-  - Enterprise
+- POS
+- Restaurant
+- Hospitality
+- NCR
 created: '2026-05-08'
 modified: '2026-05-08'
 specificationVersion: '0.19'
-apis: []
+apis:
+- aid: aloha-pos:ncr-voyix-platform
+  name: NCR Voyix Commerce Platform APIs (Aloha)
+  description: REST APIs for Aloha POS (Aloha Cloud, Aloha Essentials) via the NCR Voyix Developer Experience.
+    Covers site/store provisioning, menu management, orders, payments, and reporting.
+  humanURL: https://developer.ncrvoyix.com/
+  tags:
+  - REST
+  - Restaurant
+  - POS
+  properties:
+  - type: Documentation
+    url: https://developer.ncrvoyix.com/
+- aid: aloha-pos:aloha-cloud-api
+  name: Aloha Cloud APIs
+  description: Aloha Cloud-specific endpoints for menu, orders, employees, and payments via NCR Voyix.
+  humanURL: https://developer.ncrvoyix.com/
+  tags:
+  - REST
+  - Restaurant
+  - Cloud
+  properties:
+  - type: Documentation
+    url: https://developer.ncrvoyix.com/
 common:
-  - type: Website
-    url: https://www.ncrvoyix.com/restaurants
-  - type: Plans
-    url: plans/aloha-pos-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/aloha-pos-rate-limits.yml
-  - type: FinOps
-    url: finops/aloha-pos-finops.yml
+- type: Website
+  url: https://www.ncrvoyix.com/restaurants/aloha-cloud
+- type: Developer
+  url: https://developer.ncrvoyix.com/
+- type: Plans
+  url: plans/aloha-pos-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/aloha-pos-rate-limits.yml
+- type: FinOps
+  url: finops/aloha-pos-finops.yml
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com

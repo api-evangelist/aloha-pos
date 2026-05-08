@@ -9,24 +9,23 @@ reconciled: false
 tags:
 - POS
 - Restaurant
-- NCR
 - Hospitality
-- Enterprise
+- NCR
 - Rate Limiting
 - Quotas
 - Throttling
-description: Placeholder rate-limit artifact for Aloha POS. Replace with real limits once researched.
-notes: Initial scaffold — limits have not yet been reconciled.
+description: NCR Voyix does not publicly publish Aloha API rate limits. Honor 429 responses.
+notes: Confirm thresholds with NCR Voyix partner support.
 sources:
-- https://www.ncrvoyix.com/restaurants
+- https://developer.ncrvoyix.com/
 responseCodes:
   throttled: 429
 limits:
 - name: Default
-  scope: account
-  metric: varies
-  limit: see provider documentation
-  notes: Pending reconciliation.
+  scope: tenant
+  metric: requests
+  limit: not publicly documented
+  notes: Honor 429 and Retry-After.
 policies:
 - name: Backoff Strategy
   description: Clients should implement exponential backoff with jitter and honor any Retry-After header.

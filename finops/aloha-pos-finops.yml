@@ -9,16 +9,15 @@ reconciled: false
 tags:
 - POS
 - Restaurant
-- NCR
 - Hospitality
-- Enterprise
+- NCR
 - FinOps
 - Cost Management
 - FOCUS
-description: FOCUS-aligned FinOps placeholder for Aloha POS. Pipeline will replace with real billing details.
-notes: Initial scaffold — billing model has not yet been reconciled.
+description: FOCUS-aligned FinOps profile. Per-location restaurant SaaS plus payment processing.
+notes: Hardware capex separate from SaaS opex.
 sources:
-- https://www.ncrvoyix.com/restaurants
+- https://www.ncrvoyix.com/restaurants/aloha-cloud
 - https://focus.finops.org/focus-specification/v1-3/
 alignedWith:
   framework: FinOps Foundation Framework
@@ -27,31 +26,37 @@ alignedWith:
   dataSpecVersion: '1.3'
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 publisherName: Aloha POS
-serviceCategory: POS
+serviceCategory: Payments & POS
 billingModel:
-  pricingCategory: To Be Reconciled
+  pricingCategory: Subscription
   billingFrequency: Monthly
   billingCurrency: USD
   chargeCategories:
-  - Usage
   - Purchase
+  - Usage
   - Adjustment
 focusColumns:
   ServiceName: Aloha POS
-  ServiceCategory: POS
+  ServiceCategory: Payments & POS
   ProviderName: Aloha POS
   PublisherName: Aloha POS
   InvoiceIssuerName: Aloha POS
   BillingCurrency: USD
   ChargeCategory: Usage
 meters:
-- name: api_usage
-  description: Catch-all meter pending reconciliation.
-  unit: varies
+- name: per_location_saas
+  description: Per-location monthly SaaS.
+  unit: subscription
   aggregation: sum
   dimensions:
-  - account
-  - resource
+  - merchant
+  - location
+- name: processing_volume
+  description: Card processing volume.
+  unit: USD
+  aggregation: sum
+  dimensions:
+  - merchant
 principles:
 - name: Visibility
   description: Pull provider invoices or usage exports until a self-serve usage feed is documented.

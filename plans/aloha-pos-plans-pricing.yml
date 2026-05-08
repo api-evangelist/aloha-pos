@@ -9,33 +9,51 @@ reconciled: false
 tags:
 - POS
 - Restaurant
-- NCR
 - Hospitality
-- Enterprise
+- NCR
 - Plans
-description: Placeholder plans/pricing artifact for Aloha POS. Replace with real published pricing once
-  the pipeline researches the provider's plans page.
-notes: Initial scaffold — plans/pricing have not yet been reconciled.
+description: Aloha POS is sold as a restaurant SaaS through NCR Voyix and authorized resellers. Pricing
+  is quote-based.
+notes: Developer/API access is granted via NCR Voyix partner program.
 sources:
-- https://www.ncrvoyix.com/restaurants
+- https://www.ncrvoyix.com/restaurants/aloha-cloud
+- https://developer.ncrvoyix.com/
 plans:
-- id: aloha-pos-default
-  name: To Be Reconciled
+- id: aloha-quote-based
+  name: Aloha POS Subscription
   type: enterprise
-  description: Initial scaffold; replace with provider plan tiers once pricing is reconciled.
+  description: Restaurant SaaS subscription with hardware bundles. Pricing per location.
   entries:
-  - label: API Access
-    name: api_access
+  - label: Per-Location SaaS
+    name: per_location
     type: flat
-    metric: varies
+    metric: monthly subscription
     limit: -1
-    timeFrame: usage
+    timeFrame: monthly
     geo: global
     unit: 1
-    price: see https://www.ncrvoyix.com/restaurants
+    price: contact sales
     userMultiplied: false
   elements:
-  - name: Pending Reconciliation
+  - name: Aloha Cloud
+  - name: Aloha Essentials
+- id: ncr-developer
+  name: NCR Voyix Developer / Partner
+  type: free
+  description: Free developer access via NCR Voyix Developer Experience portal.
+  entries:
+  - label: Developer Access
+    name: developer
+    type: flat
+    metric: account
+    limit: -1
+    timeFrame: perpetual
+    geo: global
+    unit: 1
+    price: free
+    userMultiplied: false
+  elements:
+  - name: Sandbox
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
