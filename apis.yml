@@ -1,7 +1,7 @@
 aid: aloha-pos
 url: https://raw.githubusercontent.com/api-evangelist/aloha-pos/refs/heads/main/apis.yml
 name: Aloha POS
-x-type: company
+kind: company
 description: Aloha POS is a restaurant point-of-sale platform from NCR Voyix. The NCR Voyix Developer
   Experience exposes APIs for Aloha (cloud and on-premise) covering site, store, menu, order, payment,
   and reporting integrations as part of the broader NCR Voyix Commerce Platform.
