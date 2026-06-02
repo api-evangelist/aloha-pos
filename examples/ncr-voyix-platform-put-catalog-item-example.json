@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "shortDescription": {
+    "values": [
+      { "locale": "en-US", "value": "Tuna Burger" }
+    ]
+  },
+  "status": "ACTIVE",
+  "merchandiseCategory": "Burgers",
+  "departmentId": "FOOD"
+}

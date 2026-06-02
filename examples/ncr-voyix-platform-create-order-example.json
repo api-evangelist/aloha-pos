@@ -1,0 +1,21 @@
+{
+  "channel": "Web",
+  "comments": "Created from online checkout",
+  "customer": {
+    "email": "test@ncrvoyix.com",
+    "firstName": "Test",
+    "lastName": "Demo"
+  },
+  "orderLines": [
+    {
+      "productId": { "type": "", "value": "SmallFries" },
+      "quantity": { "unitOfMeasure": "EA", "unitOfMeasureLabel": "", "value": 2 },
+      "unitPrice": 9.00
+    },
+    {
+      "productId": { "type": "", "value": "Tunaburger" },
+      "quantity": { "unitOfMeasure": "EA", "unitOfMeasureLabel": "", "value": 2 },
+      "unitPrice": 13.00
+    }
+  ]
+}

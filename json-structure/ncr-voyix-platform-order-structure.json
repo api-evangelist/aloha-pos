@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aloha-pos/refs/heads/main/json-structure/ncr-voyix-platform-order-structure.json",
+  "name": "Order",
+  "description": "An order (check) created through the NCR Voyix Order API.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The order identifier."
+    },
+    "channel": {
+      "type": "string",
+      "description": "Origination channel of the order."
+    },
+    "comments": {
+      "type": "string",
+      "description": "Free-text comments on the order."
+    },
+    "customer": {
+      "type": "object",
+      "description": "The customer placing the order.",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        }
+      }
+    },
+    "orderLines": {
+      "type": "array",
+      "description": "The line items on the order.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            }
+          },
+          "quantity": {
+            "type": "object",
+            "properties": {
+              "unitOfMeasure": {
+                "type": "string"
+              },
+              "unitOfMeasureLabel": {
+                "type": "string"
+              },
+              "value": {
+                "type": "double"
+              }
+            }
+          },
+          "unitPrice": {
+            "type": "double"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "orderLines"
+  ]
+}

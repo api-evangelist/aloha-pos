@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aloha-pos/refs/heads/main/json-structure/ncr-voyix-platform-item-price-structure.json",
+  "name": "ItemPrice",
+  "description": "A price for a catalog item, tied to the item by its item code.",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "int32",
+      "description": "Optimistic-concurrency version; must increase on each update."
+    },
+    "price": {
+      "type": "double",
+      "description": "The price amount."
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency of the price.",
+      "default": "US Dollar"
+    },
+    "effectiveDate": {
+      "type": "datetime",
+      "description": "When the price becomes effective."
+    },
+    "status": {
+      "type": "string",
+      "description": "Price lifecycle status.",
+      "enum": [
+        "ACTIVE",
+        "INACTIVE"
+      ]
+    },
+    "priceId": {
+      "type": "object",
+      "description": "Identifier tying the price to its item.",
+      "properties": {
+        "itemCode": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": [
+    "version",
+    "price"
+  ]
+}

@@ -1,0 +1,209 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Aloha POS (NCR Voyix)"
+  description: >-
+    Unified taxonomy of the Aloha POS surface on the NCR Voyix Commerce Platform,
+    mapping operational API resources (Catalog, Menu, Order, Site) to the
+    capability workflows that compose them. Reconstructed from the publicly
+    published NCR Voyix sample applications; consult developer.ncrvoyix.com for
+    the authoritative contract.
+  created: "2026-06-02"
+  modified: "2026-06-02"
+
+# OPERATIONAL DIMENSION (from OpenAPI)
+operational:
+  apis:
+    - name: "NCR Voyix Commerce Platform APIs (Aloha)"
+      namespace: "ncr-voyix-platform"
+      version: "1.0"
+      baseUrl: "https://api.ncr.com"
+      status: active
+  resources:
+    - name: "items"
+      api: "ncr-voyix-platform"
+      domain: "Catalog"
+      actions: [get, put, list]
+    - name: "item-prices"
+      api: "ncr-voyix-platform"
+      domain: "Catalog"
+      actions: [get, put, query]
+    - name: "menu"
+      api: "ncr-voyix-platform"
+      domain: "Menu"
+      actions: [get]
+    - name: "orders"
+      api: "ncr-voyix-platform"
+      domain: "Order"
+      actions: [create, get, find]
+    - name: "sites"
+      api: "ncr-voyix-platform"
+      domain: "Site"
+      actions: [create, get, update, query]
+  actions:
+    - name: get
+      method: GET
+      pattern: read
+    - name: list
+      method: GET
+      pattern: read
+    - name: query
+      method: POST
+      pattern: query
+    - name: find
+      method: POST
+      pattern: query
+    - name: create
+      method: POST
+      pattern: write
+    - name: put
+      method: PUT
+      pattern: write
+    - name: update
+      method: PUT
+      pattern: write
+  schemas:
+    core:
+      - name: Item
+        properties: [version, shortDescription, status, merchandiseCategory, departmentId, itemId]
+      - name: ItemPrice
+        properties: [version, price, currency, effectiveDate, status, priceId]
+      - name: Site
+        properties: [id, siteName, enterpriseUnitName, coordinates, status]
+      - name: Order
+        properties: [id, channel, comments, customer, orderLines]
+  parameters:
+    pagination:
+      - pageNumber
+      - pageSize
+    identifiers:
+      - itemCode
+      - priceId
+      - siteId
+      - orderId
+      - menuMapping
+    filters:
+      - merchandiseCategoryId
+      - itemStatus
+      - criteria
+    scoping:
+      - nep-organization
+      - nep-enterprise-unit
+      - nep-correlation-id
+      - nep-service-version
+  enums:
+    states:
+      - ACTIVE
+      - INACTIVE
+    units:
+      - EA
+    channels:
+      - Web
+  authentication:
+    schemes:
+      - name: hmacAccessKey
+        type: HMAC
+        algorithm: SHA-512
+        placement: "Authorization header (AccessKey {sharedKey}:{signature})"
+        apis: [ncr-voyix-platform]
+
+# CAPABILITY DIMENSION (from Naftiko)
+capability:
+  workflows:
+    - name: "Catalog"
+      file: "capabilities/ncr-voyix-platform-catalog.yaml"
+      description: "Manage Aloha catalog items and prices."
+      apis: [ncr-voyix-platform]
+      tools: 6
+      personas: [Menu Manager, Integrator]
+      domains: [Catalog]
+    - name: "Menu"
+      file: "capabilities/ncr-voyix-platform-menu.yaml"
+      description: "Retrieve menu structure for a site."
+      apis: [ncr-voyix-platform]
+      tools: 1
+      personas: [Online Ordering Partner]
+      domains: [Menu]
+    - name: "Order"
+      file: "capabilities/ncr-voyix-platform-order.yaml"
+      description: "Create and look up checks/orders."
+      apis: [ncr-voyix-platform]
+      tools: 3
+      personas: [Online Ordering Partner, Integrator]
+      domains: [Order]
+    - name: "Site"
+      file: "capabilities/ncr-voyix-platform-site.yaml"
+      description: "Provision and look up Aloha sites (locations)."
+      apis: [ncr-voyix-platform]
+      tools: 4
+      personas: [Operations Manager, Integrator]
+      domains: [Site]
+  personas:
+    - id: menu-manager
+      name: "Menu Manager"
+      description: "Maintains item catalog and pricing."
+      workflows: [Catalog]
+    - id: online-ordering-partner
+      name: "Online Ordering Partner"
+      description: "Third party routing orders and reading menus into Aloha (e.g. Olo)."
+      workflows: [Menu, Order]
+    - id: operations-manager
+      name: "Operations Manager"
+      description: "Provisions and manages restaurant locations."
+      workflows: [Site]
+    - id: integrator
+      name: "Integrator"
+      description: "Builds integrations across the NCR Voyix Business Services Platform."
+      workflows: [Catalog, Order, Site]
+  domains:
+    - name: Catalog
+      resources: [items, item-prices]
+      workflows: [Catalog]
+    - name: Menu
+      resources: [menu]
+      workflows: [Menu]
+    - name: Order
+      resources: [orders]
+      workflows: [Order]
+    - name: Site
+      resources: [sites]
+      workflows: [Site]
+  namespaces:
+    - consumed: ncr-voyix-platform-catalog
+      rest: ncr-voyix-platform-catalog-rest
+      mcp: ncr-voyix-platform-catalog-mcp
+    - consumed: ncr-voyix-platform-menu
+      rest: ncr-voyix-platform-menu-rest
+      mcp: ncr-voyix-platform-menu-mcp
+    - consumed: ncr-voyix-platform-order
+      rest: ncr-voyix-platform-order-rest
+      mcp: ncr-voyix-platform-order-mcp
+    - consumed: ncr-voyix-platform-site
+      rest: ncr-voyix-platform-site-rest
+      mcp: ncr-voyix-platform-site-mcp
+  binds:
+    - key: NCR_VOYIX_ACCESS_KEY
+      workflows: [Catalog, Menu, Order, Site]
+
+# CROSS-REFERENCE
+crossReference:
+  - resource: items
+    operations: [getCatalogItem, putCatalogItem, listCatalogItems]
+    workflows: [Catalog]
+    personas: [Menu Manager, Integrator]
+  - resource: item-prices
+    operations: [getItemPrice, putItemPrice, getMultipleItemPrices]
+    workflows: [Catalog]
+    personas: [Menu Manager]
+  - resource: menu
+    operations: [getMenuDetails]
+    workflows: [Menu]
+    personas: [Online Ordering Partner]
+  - resource: orders
+    operations: [createOrder, getOrder, findOrders]
+    workflows: [Order]
+    personas: [Online Ordering Partner, Integrator]
+  - resource: sites
+    operations: [createSite, getSite, updateSite, findSitesByCriteria]
+    workflows: [Site]
+    personas: [Operations Manager, Integrator]

@@ -1,0 +1,255 @@
+# Spectral ruleset for the NCR Voyix Commerce Platform APIs (Aloha)
+# Enforces the conventions observed across the NCR Voyix Business Services
+# Platform: camelCase schema properties, HMAC AccessKey security, Title Case
+# tags, nep-* scoping headers, and ACTIVE/INACTIVE soft-delete status.
+extends:
+  - "spectral:oas"
+
+rules:
+
+  # ── INFO / METADATA ───────────────────────────────────────────────
+  info-title-required:
+    description: Info object must have a title.
+    severity: error
+    given: "$.info"
+    then:
+      field: title
+      function: truthy
+  info-description-required:
+    description: Info object should have a description of at least 40 characters.
+    severity: warn
+    given: "$.info"
+    then:
+      field: description
+      function: length
+      functionOptions:
+        min: 40
+  info-version-required:
+    description: Info object must declare a version.
+    severity: error
+    given: "$.info"
+    then:
+      field: version
+      function: truthy
+  info-contact-required:
+    description: Info object should provide contact details.
+    severity: warn
+    given: "$.info"
+    then:
+      field: contact
+      function: truthy
+
+  # ── OPENAPI VERSION ───────────────────────────────────────────────
+  openapi-version-3:
+    description: Specs must use OpenAPI 3.x.
+    severity: error
+    given: "$"
+    then:
+      field: openapi
+      function: pattern
+      functionOptions:
+        match: "^3\\."
+
+  # ── SERVERS ───────────────────────────────────────────────────────
+  servers-defined:
+    description: At least one server must be defined.
+    severity: error
+    given: "$"
+    then:
+      field: servers
+      function: truthy
+  servers-https-only:
+    description: Server URLs must use HTTPS.
+    severity: warn
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+  servers-description:
+    description: Each server should have a description.
+    severity: info
+    given: "$.servers[*]"
+    then:
+      field: description
+      function: truthy
+
+  # ── PATHS — NAMING CONVENTIONS ────────────────────────────────────
+  paths-no-trailing-slash:
+    description: Paths should not end with a trailing slash.
+    severity: warn
+    given: "$.paths"
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        notMatch: ".+/$"
+  paths-kebab-or-lowercase:
+    description: Path segments should be lowercase (kebab-case where multi-word).
+    severity: info
+    given: "$.paths"
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        notMatch: "[A-Z]"
+
+  # ── OPERATIONS ────────────────────────────────────────────────────
+  operation-summary-required:
+    description: Every operation must have a summary.
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: summary
+      function: truthy
+  operation-summary-title-case:
+    description: Operation summaries should use Title Case.
+    severity: info
+    given: "$.paths[*][get,post,put,patch,delete].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][A-Za-z0-9]*( [A-Z0-9][A-Za-z0-9]*)*$"
+  operation-description-required:
+    description: Every operation should have a description.
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: description
+      function: truthy
+  operation-id-required:
+    description: Every operation must declare an operationId.
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: truthy
+  operation-id-camel-case:
+    description: operationId should be camelCase with a verb prefix (get/list/create/update/find).
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(get|list|create|update|delete|find|put)[A-Z][A-Za-z0-9]*$"
+  operation-tags-required:
+    description: Every operation must be tagged.
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: truthy
+
+  # ── TAGS ──────────────────────────────────────────────────────────
+  tags-global-defined:
+    description: A global tags array should be declared.
+    severity: info
+    given: "$"
+    then:
+      field: tags
+      function: truthy
+  tag-description-required:
+    description: Each global tag should have a description.
+    severity: info
+    given: "$.tags[*]"
+    then:
+      field: description
+      function: truthy
+  tag-title-case:
+    description: Tag names must use Title Case.
+    severity: warn
+    given: "$.tags[*].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][A-Za-z0-9]*( [A-Z0-9][A-Za-z0-9]*)*$"
+
+  # ── PARAMETERS ────────────────────────────────────────────────────
+  parameter-description-required:
+    description: Parameters should be described.
+    severity: warn
+    given: "$.paths[*][*].parameters[*]"
+    then:
+      field: description
+      function: truthy
+  parameter-nep-scoping-camel-exception:
+    description: NCR scoping headers use the nep-* convention.
+    severity: info
+    given: "$..parameters[?(@.in=='header')].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(nep-[a-z-]+|[A-Za-z][A-Za-z0-9-]*)$"
+
+  # ── REQUEST BODIES ────────────────────────────────────────────────
+  request-body-json:
+    description: Request bodies should offer application/json.
+    severity: warn
+    given: "$.paths[*][post,put,patch].requestBody.content"
+    then:
+      field: application/json
+      function: truthy
+
+  # ── RESPONSES ─────────────────────────────────────────────────────
+  response-success-defined:
+    description: Operations must define at least one 2xx response.
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete].responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          patternProperties:
+            "^2[0-9][0-9]$": {}
+          minProperties: 1
+  response-description-required:
+    description: Every response must have a description.
+    severity: warn
+    given: "$.paths[*][*].responses[*]"
+    then:
+      field: description
+      function: truthy
+
+  # ── SCHEMAS — PROPERTY NAMING ─────────────────────────────────────
+  schema-property-camel-case:
+    description: Schema properties should use camelCase (the NCR Voyix convention).
+    severity: warn
+    given: "$.components.schemas[*].properties"
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+  schema-status-enum:
+    description: status properties should be constrained to ACTIVE/INACTIVE.
+    severity: info
+    given: "$..properties.status"
+    then:
+      field: enum
+      function: truthy
+
+  # ── SECURITY ──────────────────────────────────────────────────────
+  security-global-defined:
+    description: A global security requirement must be declared (HMAC AccessKey).
+    severity: error
+    given: "$"
+    then:
+      field: security
+      function: truthy
+  security-scheme-described:
+    description: Security schemes must be described.
+    severity: warn
+    given: "$.components.securitySchemes[*]"
+    then:
+      field: description
+      function: truthy
+
+  # ── HTTP METHOD CONVENTIONS ───────────────────────────────────────
+  get-no-request-body:
+    description: GET operations must not declare a request body.
+    severity: error
+    given: "$.paths[*].get"
+    then:
+      field: requestBody
+      function: falsy

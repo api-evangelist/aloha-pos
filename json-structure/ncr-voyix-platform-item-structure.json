@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aloha-pos/refs/heads/main/json-structure/ncr-voyix-platform-item-structure.json",
+  "name": "Item",
+  "description": "A catalog item managed through the NCR Voyix Catalog API.",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "int32",
+      "description": "Optimistic-concurrency version; must increase on each update."
+    },
+    "shortDescription": {
+      "type": "object",
+      "description": "Locale-specific short description.",
+      "properties": {
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "locale": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "description": "Item lifecycle status.",
+      "enum": [
+        "ACTIVE",
+        "INACTIVE"
+      ]
+    },
+    "merchandiseCategory": {
+      "type": "string",
+      "description": "Merchandise category the item belongs to."
+    },
+    "departmentId": {
+      "type": "string",
+      "description": "Department the item is assigned to."
+    },
+    "itemId": {
+      "type": "object",
+      "description": "Map of item identifier types to values.",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "version",
+    "status"
+  ]
+}

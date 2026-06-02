@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aloha-pos/refs/heads/main/json-structure/ncr-voyix-platform-site-structure.json",
+  "name": "Site",
+  "description": "A site (location) provisioned on the NCR Voyix Platform.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The alphanumeric site identifier."
+    },
+    "siteName": {
+      "type": "string",
+      "description": "Display name of the site."
+    },
+    "enterpriseUnitName": {
+      "type": "string",
+      "description": "Enterprise unit name associated with the site."
+    },
+    "coordinates": {
+      "type": "object",
+      "description": "Geographic coordinates of the site.",
+      "properties": {
+        "latitude": {
+          "type": "double"
+        },
+        "longitude": {
+          "type": "double"
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "description": "Site lifecycle status.",
+      "enum": [
+        "ACTIVE",
+        "INACTIVE"
+      ]
+    }
+  },
+  "required": [
+    "siteName",
+    "enterpriseUnitName",
+    "status"
+  ]
+}

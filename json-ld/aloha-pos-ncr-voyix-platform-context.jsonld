@@ -1,0 +1,145 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "ncr": "https://developer.ncrvoyix.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "ItemPrice": "ncr:ItemPrice",
+    "Item": "ncr:Item",
+    "Order": "ncr:Order",
+    "Site": "ncr:Site",
+    "version": {
+      "@id": "schema:version"
+    },
+    "price": {
+      "@id": "ncr:price",
+      "@type": "xsd:double"
+    },
+    "currency": {
+      "@id": "ncr:currency",
+      "@type": "xsd:string"
+    },
+    "effectiveDate": {
+      "@id": "ncr:effectiveDate",
+      "@type": "xsd:dateTime"
+    },
+    "status": {
+      "@id": "ncr:status",
+      "@type": "xsd:string"
+    },
+    "priceId": {
+      "@id": "ncr:priceId",
+      "@type": "@id"
+    },
+    "itemCode": {
+      "@id": "ncr:itemCode",
+      "@type": "xsd:string"
+    },
+    "shortDescription": {
+      "@id": "ncr:shortDescription",
+      "@type": "@id"
+    },
+    "values": {
+      "@id": "ncr:values",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "locale": {
+      "@id": "ncr:locale",
+      "@type": "xsd:string"
+    },
+    "value": {
+      "@id": "ncr:value",
+      "@type": "xsd:string"
+    },
+    "merchandiseCategory": {
+      "@id": "ncr:merchandiseCategory",
+      "@type": "xsd:string"
+    },
+    "departmentId": {
+      "@id": "ncr:departmentId",
+      "@type": "xsd:string"
+    },
+    "itemId": {
+      "@id": "ncr:itemId",
+      "@type": "@id"
+    },
+    "id": {
+      "@id": "ncr:id",
+      "@type": "xsd:string"
+    },
+    "channel": {
+      "@id": "ncr:channel",
+      "@type": "xsd:string"
+    },
+    "comments": {
+      "@id": "ncr:comments",
+      "@type": "xsd:string"
+    },
+    "customer": {
+      "@id": "ncr:customer",
+      "@type": "@id"
+    },
+    "email": {
+      "@id": "schema:email"
+    },
+    "firstName": {
+      "@id": "ncr:firstName",
+      "@type": "xsd:string"
+    },
+    "lastName": {
+      "@id": "ncr:lastName",
+      "@type": "xsd:string"
+    },
+    "orderLines": {
+      "@id": "ncr:orderLines",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "productId": {
+      "@id": "ncr:productId",
+      "@type": "@id"
+    },
+    "type": {
+      "@id": "ncr:type",
+      "@type": "xsd:string"
+    },
+    "quantity": {
+      "@id": "ncr:quantity",
+      "@type": "@id"
+    },
+    "unitOfMeasure": {
+      "@id": "ncr:unitOfMeasure",
+      "@type": "xsd:string"
+    },
+    "unitOfMeasureLabel": {
+      "@id": "ncr:unitOfMeasureLabel",
+      "@type": "xsd:string"
+    },
+    "unitPrice": {
+      "@id": "ncr:unitPrice",
+      "@type": "xsd:double"
+    },
+    "siteName": {
+      "@id": "ncr:siteName",
+      "@type": "xsd:string"
+    },
+    "enterpriseUnitName": {
+      "@id": "ncr:enterpriseUnitName",
+      "@type": "xsd:string"
+    },
+    "coordinates": {
+      "@id": "ncr:coordinates",
+      "@type": "@id"
+    },
+    "latitude": {
+      "@id": "ncr:latitude",
+      "@type": "xsd:double"
+    },
+    "longitude": {
+      "@id": "ncr:longitude",
+      "@type": "xsd:double"
+    }
+  }
+}

@@ -1,0 +1,89 @@
+naftiko: "1.0.0-alpha2"
+
+info:
+  label: "NCR Voyix Commerce Platform APIs (Aloha) — Menu"
+  description: >-
+    Menu structure — Menu. 1 operation. Lead operation: Get Menu Details.
+    Retrieve the full menu structure (categories, items, modifiers) for an Aloha
+    site via the NCR Voyix Menu service. Self-contained Naftiko capability
+    covering one NCR Voyix business surface.
+  tags:
+    - NCR Voyix
+    - Aloha
+    - Menu
+  created: "2026-06-02"
+  modified: "2026-06-02"
+
+binds:
+  - namespace: env
+    keys:
+      NCR_VOYIX_ACCESS_KEY: NCR_VOYIX_ACCESS_KEY
+
+capability:
+
+  consumes:
+    - type: http
+      namespace: "ncr-voyix-platform-menu"
+      baseUri: "https://api.ncr.com"
+      description: "NCR Voyix Commerce Platform APIs (Aloha) — Menu business capability. Self-contained, no shared references."
+      authentication:
+        type: apikey
+        key: Authorization
+        value: "{{env.NCR_VOYIX_ACCESS_KEY}}"
+        placement: header
+      resources:
+        - name: "menu-v2-menu-details-menu-mapping"
+          path: "/menu/v2/menu-details/{menuMapping}"
+          operations:
+            - name: "getMenuDetails"
+              method: GET
+              description: "Get Menu Details"
+              inputParameters:
+                - name: "menuMapping"
+                  in: path
+                  type: string
+                  required: true
+                  description: "The menu mapping identifier for the site/location."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      namespace: "ncr-voyix-platform-menu-rest"
+      port: 8080
+      description: "REST adapter for NCR Voyix Commerce Platform APIs (Aloha) — Menu. One Spectral-compliant resource per consumed operation, prefixed with /v1."
+      resources:
+        - path: "/v1/menu/v2/menu-details/{menu-mapping}"
+          name: "menu-v2-menu-details-menu-mapping"
+          description: "REST surface for menu details."
+          operations:
+            - method: GET
+              name: "getMenuDetails"
+              description: "Get Menu Details"
+              call: "ncr-voyix-platform-menu.getMenuDetails"
+              with:
+                "menuMapping": "rest.menuMapping"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+    - type: mcp
+      namespace: "ncr-voyix-platform-menu-mcp"
+      port: 9090
+      transport: http
+      description: "MCP adapter for NCR Voyix Commerce Platform APIs (Aloha) — Menu. One tool per consumed operation, routed inline through this capability's consumes block."
+      tools:
+        - name: "get-menu-details"
+          description: "Get Menu Details"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "ncr-voyix-platform-menu.getMenuDetails"
+          with:
+            "menuMapping": "tools.menuMapping"
+          outputParameters:
+            - type: object
+              mapping: "$."
