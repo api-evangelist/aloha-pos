@@ -2,102 +2,97 @@ aid: aloha-pos
 url: https://raw.githubusercontent.com/api-evangelist/aloha-pos/refs/heads/main/apis.yml
 name: Aloha POS
 kind: company
-description: Aloha POS is a restaurant point-of-sale platform from NCR Voyix. The NCR Voyix Developer
-  Experience exposes APIs for Aloha (cloud and on-premise) covering site, store, menu, order, payment,
-  and reporting integrations as part of the broader NCR Voyix Commerce Platform.
+description: >-
+  Aloha POS is a restaurant point-of-sale platform from NCR Voyix. The NCR Voyix Developer Experience exposes APIs for
+  Aloha (cloud and on-premise) covering site, store, menu, order, payment, and reporting integrations as part of the
+  broader NCR Voyix Commerce Platform.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-- POS
-- Restaurant
-- Hospitality
-- NCR
+  - POS
+  - Restaurant
+  - Hospitality
+  - NCR
 created: '2026-05-08'
 modified: '2026-06-02'
 specificationVersion: '0.19'
 apis:
-- aid: aloha-pos:ncr-voyix-platform
-  name: NCR Voyix Commerce Platform APIs (Aloha)
-  description: REST APIs for Aloha POS (Aloha Cloud, Aloha Essentials) via the NCR Voyix Developer Experience
-    (Business Services Platform). Covers Site provisioning, Catalog item and item-price management,
-    Menu details, Order creation/lookup, Security, and Provisioning services. Requests are signed with
-    HMAC (SHA-512) AccessKey authentication and scoped with nep-organization and nep-enterprise-unit headers
-    against api.ncr.com (production) / gateway-staging.ncrcloud.com (staging).
-  humanURL: https://developer.ncrvoyix.com/
-  baseURL: https://api.ncr.com
-  tags:
-  - REST
-  - Restaurant
-  - POS
-  - Catalog
-  - Order
-  - Menu
-  - Site
-  properties:
-  - type: Documentation
-    url: https://developer.ncrvoyix.com/
-  - type: OpenAPI
-    url: openapi/ncr-voyix-platform-openapi.yml
-  - type: GettingStarted
-    url: https://developer.ncrvoyix.com/portals/dev-portal/help-center/documentation/getting-started-with-ncr-apis
-  - type: CodeExamples
-    url: https://github.com/NCRVoyix-Corporation/sample-app-burgers
-    title: Hospitality Sample App (Python)
-  - type: CodeExamples
-    url: https://github.com/NCRVoyix-Corporation/ncr-retail-demo
-    title: Retail Demo App
-  - type: CodeExamples
-    url: https://github.com/NCRVoyix-Corporation/ncr-bsp-hmac
-    title: BSP HMAC Authentication Examples
-  - type: NaftikoCapability
-    url: capabilities/ncr-voyix-platform-catalog.yaml
-  - type: NaftikoCapability
-    url: capabilities/ncr-voyix-platform-menu.yaml
-  - type: NaftikoCapability
-    url: capabilities/ncr-voyix-platform-order.yaml
-  - type: NaftikoCapability
-    url: capabilities/ncr-voyix-platform-site.yaml
-- aid: aloha-pos:aloha-cloud-api
-  name: Aloha Cloud APIs
-  description: Aloha Cloud-specific endpoints including the In-Store API server (gRPC, default port 50051,
-    127.0.0.1) for local POS connectivity and the Business Services Layer (BSL) Order Service for routing
-    online/third-party orders into a store's local instance. Used for menu, orders, employees, and payments.
-  humanURL: https://developer.ncrvoyix.com/portals/dev-portal/api-explorer/details/2021/how-to
-  tags:
-  - REST
-  - Restaurant
-  - Cloud
-  - InStore
-  properties:
-  - type: Documentation
-    url: https://developer.ncrvoyix.com/portals/dev-portal/api-explorer/details/2021/how-to
+  - aid: aloha-pos:ncr-voyix-platform
+    name: NCR Voyix Commerce Platform APIs (Aloha)
+    description: >-
+      REST APIs for Aloha POS (Aloha Cloud, Aloha Essentials) via the NCR Voyix Developer Experience (Business Services
+      Platform). Covers Site provisioning, Catalog item and item-price management, Menu details, Order creation/lookup,
+      Security, and Provisioning services. Requests are signed with HMAC (SHA-512) AccessKey authentication and scoped
+      with nep-organization and nep-enterprise-unit headers against api.ncr.com (production) /
+      gateway-staging.ncrcloud.com (staging).
+    humanURL: https://developer.ncrvoyix.com/
+    baseURL: https://api.ncr.com
+    tags:
+      - REST
+      - Restaurant
+      - POS
+      - Catalog
+      - Order
+      - Menu
+      - Site
+    properties:
+      - type: Documentation
+        url: https://developer.ncrvoyix.com/
+      - type: OpenAPI
+        url: openapi/ncr-voyix-platform-openapi.yml
+      - type: GettingStarted
+        url: https://developer.ncrvoyix.com/portals/dev-portal/help-center/documentation/getting-started-with-ncr-apis
+      - type: CodeExamples
+        url: https://github.com/NCRVoyix-Corporation/sample-app-burgers
+        title: Hospitality Sample App (Python)
+      - type: CodeExamples
+        url: https://github.com/NCRVoyix-Corporation/ncr-retail-demo
+        title: Retail Demo App
+      - type: CodeExamples
+        url: https://github.com/NCRVoyix-Corporation/ncr-bsp-hmac
+        title: BSP HMAC Authentication Examples
+  - aid: aloha-pos:aloha-cloud-api
+    name: Aloha Cloud APIs
+    description: >-
+      Aloha Cloud-specific endpoints including the In-Store API server (gRPC, default port 50051, 127.0.0.1) for local
+      POS connectivity and the Business Services Layer (BSL) Order Service for routing online/third-party orders into a
+      store's local instance. Used for menu, orders, employees, and payments.
+    humanURL: https://developer.ncrvoyix.com/portals/dev-portal/api-explorer/details/2021/how-to
+    tags:
+      - REST
+      - Restaurant
+      - Cloud
+      - InStore
+    properties:
+      - type: Documentation
+        url: https://developer.ncrvoyix.com/portals/dev-portal/api-explorer/details/2021/how-to
 common:
-- type: Website
-  url: https://www.ncrvoyix.com/restaurants/aloha-cloud
-- type: Developer
-  url: https://developer.ncrvoyix.com/
-- type: Documentation
-  url: https://docs.ncrvoyix.com/restaurant/aloha-pos
-- type: GitHubOrganization
-  url: https://github.com/NCRVoyix-Corporation
-- type: APIExplorer
-  url: https://developer.ncrvoyix.com/portals/dev-portal/api-explorer
-- type: Authentication
-  url: https://github.com/NCRVoyix-Corporation/ncr-bsp-hmac
-  title: HMAC (AccessKey) Authentication
-- type: Rules
-  url: rules/ncr-voyix-platform-rules.yml
-- type: JSONSchema
-  url: json-schema/
-- type: JSONLD
-  url: json-ld/aloha-pos-ncr-voyix-platform-context.jsonld
-- type: Vocabulary
-  url: vocabulary/aloha-pos-vocabulary.yml
-- type: Plans
-  url: plans/aloha-pos-plans-pricing.yml
-- type: RateLimits
-  url: rate-limits/aloha-pos-rate-limits.yml
-- type: FinOps
-  url: finops/aloha-pos-finops.yml
+  - type: Website
+    url: https://www.ncrvoyix.com/restaurants/aloha-cloud
+  - type: Developer
+    url: https://developer.ncrvoyix.com/
+  - type: Documentation
+    url: https://docs.ncrvoyix.com/restaurant/aloha-pos
+  - type: GitHubOrganization
+    url: https://github.com/NCRVoyix-Corporation
+  - type: APIExplorer
+    url: https://developer.ncrvoyix.com/portals/dev-portal/api-explorer
+  - type: Authentication
+    url: https://github.com/NCRVoyix-Corporation/ncr-bsp-hmac
+    title: HMAC (AccessKey) Authentication
+  - type: Rules
+    url: rules/ncr-voyix-platform-rules.yml
+  - type: JSONSchema
+    url: json-schema/
+  - type: JSONLD
+    url: json-ld/aloha-pos-ncr-voyix-platform-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/aloha-pos-vocabulary.yml
+  - type: Plans
+    url: plans/aloha-pos-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/aloha-pos-rate-limits.yml
+  - type: FinOps
+    url: finops/aloha-pos-finops.yml
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
