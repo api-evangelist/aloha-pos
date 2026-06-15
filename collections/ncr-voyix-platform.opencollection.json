@@ -1,0 +1,355 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NCR Voyix Commerce Platform APIs (Aloha)",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Catalog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Catalog Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ncr.com/catalog/items/:itemCode",
+            "params": [
+              {
+                "name": "itemCode",
+                "value": "",
+                "type": "path",
+                "description": "The catalog item code (spaces are not permitted)."
+              }
+            ]
+          },
+          "docs": "Retrieve the details of a single catalog item by its item code."
+        },
+        {
+          "info": {
+            "name": "Create Or Update Catalog Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ncr.com/catalog/items/:itemCode",
+            "params": [
+              {
+                "name": "itemCode",
+                "value": "",
+                "type": "path",
+                "description": "The catalog item code (spaces are not permitted)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update a catalog item. There is no delete operation; mark an item INACTIVE to retire it. The version must increase on each update."
+        },
+        {
+          "info": {
+            "name": "List Catalog Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ncr.com/catalog/items",
+            "params": [
+              {
+                "name": "merchandiseCategoryId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by merchandise category identifier."
+              },
+              {
+                "name": "itemStatus",
+                "value": "",
+                "type": "query",
+                "description": "Filter by item status."
+              }
+            ]
+          },
+          "docs": "List catalog items, optionally filtered by merchandise category and status."
+        },
+        {
+          "info": {
+            "name": "Get Item Price",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ncr.com/catalog/item-prices/:itemCode/:priceId",
+            "params": [
+              {
+                "name": "itemCode",
+                "value": "",
+                "type": "path",
+                "description": "The catalog item code (spaces are not permitted)."
+              },
+              {
+                "name": "priceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the item price."
+              }
+            ]
+          },
+          "docs": "Retrieve a single item price by item code and price identifier."
+        },
+        {
+          "info": {
+            "name": "Create Or Update Item Price",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ncr.com/catalog/item-prices/:itemCode/:priceId",
+            "params": [
+              {
+                "name": "itemCode",
+                "value": "",
+                "type": "path",
+                "description": "The catalog item code (spaces are not permitted)."
+              },
+              {
+                "name": "priceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the item price."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update the price for a catalog item. The version must increase on each update."
+        },
+        {
+          "info": {
+            "name": "Get Multiple Item Prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ncr.com/catalog/item-prices/get-multiple",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve prices for a list of catalog items in a single request."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Menu",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Menu Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ncr.com/menu/v2/menu-details/:menuMapping",
+            "params": [
+              {
+                "name": "menuMapping",
+                "value": "",
+                "type": "path",
+                "description": "The menu mapping identifier for the site/location."
+              }
+            ]
+          },
+          "docs": "Retrieve the full menu structure (categories, items, modifiers) for a menu mapping."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Order",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ncr.com/order/orders",
+            "headers": [
+              {
+                "name": "nep-enterprise-unit",
+                "value": ""
+              },
+              {
+                "name": "nep-service-version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new check/order for a given location and revenue center. Requires the nep-enterprise-unit header identifying the location."
+        },
+        {
+          "info": {
+            "name": "Get Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ncr.com/order/3/orders/1/:orderId",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "The order identifier."
+              }
+            ]
+          },
+          "docs": "Retrieve a single order by its identifier."
+        },
+        {
+          "info": {
+            "name": "Find Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ncr.com/order/3/orders/1/find",
+            "params": [
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search for orders by criteria such as customer email, with paging."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Site",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Site",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ncr.com/site/sites",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new site (location) on the NCR Voyix Platform."
+        },
+        {
+          "info": {
+            "name": "Find Sites By Criteria",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ncr.com/site/sites/find-by-criteria",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search for sites matching the supplied criteria, with paging."
+        },
+        {
+          "info": {
+            "name": "Get Site",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ncr.com/site/sites/:siteId",
+            "params": [
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "path",
+                "description": "The alphanumeric site identifier (not the site name)."
+              }
+            ]
+          },
+          "docs": "Retrieve a single site by its identifier."
+        },
+        {
+          "info": {
+            "name": "Update Site",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ncr.com/site/sites/:siteId",
+            "params": [
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "path",
+                "description": "The alphanumeric site identifier (not the site name)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a site by its identifier. Set status to INACTIVE to logically delete the site (there is no hard delete)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

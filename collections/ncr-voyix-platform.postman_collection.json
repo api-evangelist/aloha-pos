@@ -1,0 +1,1977 @@
+{
+  "item": [
+    {
+      "id": "50397610-5e4e-48ac-adc7-525865ee43a1",
+      "name": "Catalog",
+      "description": {
+        "content": "Item and item-price management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "babba7a4-c6ee-4aef-adc4-3d0beaf5681c",
+          "name": "Get Catalog Item",
+          "request": {
+            "name": "Get Catalog Item",
+            "description": {
+              "content": "Retrieve the details of a single catalog item by its item code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "catalog",
+                "items",
+                ":itemCode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemCode",
+                  "description": "(Required) The catalog item code (spaces are not permitted)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e1b114c5-64d1-4ca7-b38e-683951ca97d7",
+              "name": "The catalog item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "items",
+                    ":itemCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemCode",
+                      "description": "(Required) The catalog item code (spaces are not permitted)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": 398,\n  \"status\": \"<string>\",\n  \"shortDescription\": {\n    \"values\": [\n      {\n        \"locale\": \"en-US\",\n        \"value\": \"string\"\n      },\n      {\n        \"locale\": \"en-US\",\n        \"value\": \"string\"\n      }\n    ]\n  },\n  \"merchandiseCategory\": \"string\",\n  \"departmentId\": \"string\",\n  \"itemId\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3dd0c4ea-cd58-4523-a7b2-155e37779a6d",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "items",
+                    ":itemCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemCode",
+                      "description": "(Required) The catalog item code (spaces are not permitted)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4aa88fc8-be4f-45ab-a988-c02bd522f24a",
+          "name": "Create Or Update Catalog Item",
+          "request": {
+            "name": "Create Or Update Catalog Item",
+            "description": {
+              "content": "Create or update a catalog item. There is no delete operation; mark an item INACTIVE to retire it. The version must increase on each update.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "catalog",
+                "items",
+                ":itemCode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemCode",
+                  "description": "(Required) The catalog item code (spaces are not permitted)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"version\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"shortDescription\": {\n    \"values\": [\n      {\n        \"locale\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"locale\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  },\n  \"merchandiseCategory\": \"<string>\",\n  \"departmentId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c5cc7146-d853-4a71-814c-4ff2ed9412bf",
+              "name": "The created or updated catalog item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "items",
+                    ":itemCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemCode",
+                      "description": "(Required) The catalog item code (spaces are not permitted)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"version\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"shortDescription\": {\n    \"values\": [\n      {\n        \"locale\": \"en-US\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"locale\": \"en-US\",\n        \"value\": \"<string>\"\n      }\n    ]\n  },\n  \"merchandiseCategory\": \"<string>\",\n  \"departmentId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"shortDescription\": {\n    \"values\": [\n      {\n        \"locale\": \"en-US\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"locale\": \"en-US\",\n        \"value\": \"<string>\"\n      }\n    ]\n  },\n  \"merchandiseCategory\": \"<string>\",\n  \"departmentId\": \"<string>\",\n  \"itemId\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "01b9aae3-81bb-40f1-a489-951c2c392073",
+          "name": "List Catalog Items",
+          "request": {
+            "name": "List Catalog Items",
+            "description": {
+              "content": "List catalog items, optionally filtered by merchandise category and status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "catalog",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "merchandiseCategoryId",
+                  "value": "<string>",
+                  "description": "Filter by merchandise category identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "itemStatus",
+                  "value": "<string>",
+                  "description": "Filter by item status."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2a4d769b-af96-4244-a3d0-c837a5103048",
+              "name": "A page of catalog items.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchandiseCategoryId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "itemStatus",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pageContent\": [\n    {\n      \"version\": \"<integer>\",\n      \"status\": \"<string>\",\n      \"shortDescription\": {\n        \"values\": [\n          {\n            \"locale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"locale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"merchandiseCategory\": \"<string>\",\n      \"departmentId\": \"<string>\",\n      \"itemId\": {\n        \"key_0\": \"string\"\n      }\n    },\n    {\n      \"version\": \"<integer>\",\n      \"status\": \"<string>\",\n      \"shortDescription\": {\n        \"values\": [\n          {\n            \"locale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"locale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"merchandiseCategory\": \"<string>\",\n      \"departmentId\": \"<string>\",\n      \"itemId\": {\n        \"key_0\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2cc13134-0751-49e9-83db-f70e46ba2a13",
+          "name": "Get Item Price",
+          "request": {
+            "name": "Get Item Price",
+            "description": {
+              "content": "Retrieve a single item price by item code and price identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "catalog",
+                "item-prices",
+                ":itemCode",
+                ":priceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemCode",
+                  "description": "(Required) The catalog item code (spaces are not permitted)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "priceId",
+                  "description": "(Required) Unique identifier for the item price."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "627b734a-f2ff-4e53-8f0c-fdc50af6842b",
+              "name": "The item price.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "item-prices",
+                    ":itemCode",
+                    ":priceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemCode",
+                      "description": "(Required) The catalog item code (spaces are not permitted)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "priceId",
+                      "description": "(Required) Unique identifier for the item price."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": 8643,\n  \"price\": 1401.7977818390127,\n  \"currency\": \"US Dollar\",\n  \"effectiveDate\": \"1984-08-23T01:01:25.402Z\",\n  \"status\": \"<string>\",\n  \"priceId\": {\n    \"itemCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c26b0682-ebf2-469e-915e-7523df5190b2",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "item-prices",
+                    ":itemCode",
+                    ":priceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemCode",
+                      "description": "(Required) The catalog item code (spaces are not permitted)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "priceId",
+                      "description": "(Required) Unique identifier for the item price."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "316a62e8-6bcb-496a-8285-99bda6a2cc5d",
+          "name": "Create Or Update Item Price",
+          "request": {
+            "name": "Create Or Update Item Price",
+            "description": {
+              "content": "Create or update the price for a catalog item. The version must increase on each update.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "catalog",
+                "item-prices",
+                ":itemCode",
+                ":priceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemCode",
+                  "description": "(Required) The catalog item code (spaces are not permitted)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "priceId",
+                  "description": "(Required) Unique identifier for the item price."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"version\": \"<integer>\",\n  \"price\": \"<double>\",\n  \"currency\": \"<string>\",\n  \"effectiveDate\": \"<dateTime>\",\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "deafa4d7-d3a9-4887-b696-d9a42aa5903d",
+              "name": "The created or updated item price.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "item-prices",
+                    ":itemCode",
+                    ":priceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemCode",
+                      "description": "(Required) The catalog item code (spaces are not permitted)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "priceId",
+                      "description": "(Required) Unique identifier for the item price."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"version\": \"<integer>\",\n  \"price\": \"<double>\",\n  \"currency\": \"US Dollar\",\n  \"effectiveDate\": \"<dateTime>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": \"<integer>\",\n  \"price\": \"<double>\",\n  \"currency\": \"US Dollar\",\n  \"effectiveDate\": \"<dateTime>\",\n  \"status\": \"<string>\",\n  \"priceId\": {\n    \"itemCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e327749-f8d1-435c-8234-1edc98d13b07",
+          "name": "Get Multiple Item Prices",
+          "request": {
+            "name": "Get Multiple Item Prices",
+            "description": {
+              "content": "Retrieve prices for a list of catalog items in a single request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "catalog",
+                "item-prices",
+                "get-multiple"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"itemIds\": [\n    {\n      \"itemCode\": \"<string>\"\n    },\n    {\n      \"itemCode\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "da0c9c18-fcad-401a-b4c1-c057b67f378f",
+              "name": "The requested item prices.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "item-prices",
+                    "get-multiple"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"itemIds\": [\n    {\n      \"itemCode\": \"<string>\"\n    },\n    {\n      \"itemCode\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"itemPrices\": [\n    {\n      \"version\": \"<integer>\",\n      \"price\": \"<double>\",\n      \"currency\": \"US Dollar\",\n      \"effectiveDate\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"priceId\": {\n        \"itemCode\": \"string\"\n      }\n    },\n    {\n      \"version\": \"<integer>\",\n      \"price\": \"<double>\",\n      \"currency\": \"US Dollar\",\n      \"effectiveDate\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"priceId\": {\n        \"itemCode\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "c78e0fc2-e3ef-4d45-8c48-fee50b23364c",
+      "name": "Menu",
+      "description": {
+        "content": "Menu structure and details.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "11ea1419-d63d-4eed-abb1-624fadcd750e",
+          "name": "Get Menu Details",
+          "request": {
+            "name": "Get Menu Details",
+            "description": {
+              "content": "Retrieve the full menu structure (categories, items, modifiers) for a menu mapping.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "menu",
+                "v2",
+                "menu-details",
+                ":menuMapping"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "menuMapping",
+                  "description": "(Required) The menu mapping identifier for the site/location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d9399542-7315-4082-bb3f-c86005ea24b5",
+              "name": "The menu details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "menu",
+                    "v2",
+                    "menu-details",
+                    ":menuMapping"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "menuMapping",
+                      "description": "(Required) The menu mapping identifier for the site/location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "dd23ac4a-3906-45fe-9851-b67654db37bc",
+      "name": "Order",
+      "description": {
+        "content": "Order creation and lookup.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b6a9ecd8-2203-4efd-9b30-3ee13fca2b53",
+          "name": "Create Order",
+          "request": {
+            "name": "Create Order",
+            "description": {
+              "content": "Create a new check/order for a given location and revenue center. Requires the nep-enterprise-unit header identifying the location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "order",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Identifier of the enterprise unit (location) the request applies to.",
+                "key": "nep-enterprise-unit",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "The targeted service version (e.g. \"3:1\").",
+                "key": "nep-service-version",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderLines\": [\n    {\n      \"productId\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"quantity\": {\n        \"unitOfMeasure\": \"<string>\",\n        \"unitOfMeasureLabel\": \"<string>\",\n        \"value\": \"<number>\"\n      },\n      \"unitPrice\": \"<double>\"\n    },\n    {\n      \"productId\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"quantity\": {\n        \"unitOfMeasure\": \"<string>\",\n        \"unitOfMeasureLabel\": \"<string>\",\n        \"value\": \"<number>\"\n      },\n      \"unitPrice\": \"<double>\"\n    }\n  ],\n  \"channel\": \"<string>\",\n  \"comments\": \"<string>\",\n  \"customer\": {\n    \"email\": \"<email>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d2a65c3b-e78b-404a-9cf7-1ba22385dc6a",
+              "name": "The created order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "order",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Identifier of the enterprise unit (location) the request applies to.",
+                    "key": "nep-enterprise-unit",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The targeted service version (e.g. \"3:1\").",
+                    "key": "nep-service-version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderLines\": [\n    {\n      \"productId\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"quantity\": {\n        \"unitOfMeasure\": \"EA\",\n        \"unitOfMeasureLabel\": \"<string>\",\n        \"value\": \"<number>\"\n      },\n      \"unitPrice\": \"<double>\"\n    },\n    {\n      \"productId\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"quantity\": {\n        \"unitOfMeasure\": \"EA\",\n        \"unitOfMeasureLabel\": \"<string>\",\n        \"value\": \"<number>\"\n      },\n      \"unitPrice\": \"<double>\"\n    }\n  ],\n  \"channel\": \"Web\",\n  \"comments\": \"<string>\",\n  \"customer\": {\n    \"email\": \"<email>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orderLines\": [\n    {\n      \"productId\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"quantity\": {\n        \"unitOfMeasure\": \"EA\",\n        \"unitOfMeasureLabel\": \"<string>\",\n        \"value\": \"<number>\"\n      },\n      \"unitPrice\": \"<double>\"\n    },\n    {\n      \"productId\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"quantity\": {\n        \"unitOfMeasure\": \"EA\",\n        \"unitOfMeasureLabel\": \"<string>\",\n        \"value\": \"<number>\"\n      },\n      \"unitPrice\": \"<double>\"\n    }\n  ],\n  \"channel\": \"Web\",\n  \"comments\": \"<string>\",\n  \"customer\": {\n    \"email\": \"<email>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\"\n  },\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a65df218-ef07-4ba2-9dc0-7fa23173fdb7",
+              "name": "The created order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "order",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Identifier of the enterprise unit (location) the request applies to.",
+                    "key": "nep-enterprise-unit",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The targeted service version (e.g. \"3:1\").",
+                    "key": "nep-service-version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderLines\": [\n    {\n      \"productId\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"quantity\": {\n        \"unitOfMeasure\": \"EA\",\n        \"unitOfMeasureLabel\": \"<string>\",\n        \"value\": \"<number>\"\n      },\n      \"unitPrice\": \"<double>\"\n    },\n    {\n      \"productId\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"quantity\": {\n        \"unitOfMeasure\": \"EA\",\n        \"unitOfMeasureLabel\": \"<string>\",\n        \"value\": \"<number>\"\n      },\n      \"unitPrice\": \"<double>\"\n    }\n  ],\n  \"channel\": \"Web\",\n  \"comments\": \"<string>\",\n  \"customer\": {\n    \"email\": \"<email>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orderLines\": [\n    {\n      \"productId\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"quantity\": {\n        \"unitOfMeasure\": \"EA\",\n        \"unitOfMeasureLabel\": \"<string>\",\n        \"value\": \"<number>\"\n      },\n      \"unitPrice\": \"<double>\"\n    },\n    {\n      \"productId\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"quantity\": {\n        \"unitOfMeasure\": \"EA\",\n        \"unitOfMeasureLabel\": \"<string>\",\n        \"value\": \"<number>\"\n      },\n      \"unitPrice\": \"<double>\"\n    }\n  ],\n  \"channel\": \"Web\",\n  \"comments\": \"<string>\",\n  \"customer\": {\n    \"email\": \"<email>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\"\n  },\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1afff423-7754-4313-834c-6c9045692e61",
+          "name": "Get Order",
+          "request": {
+            "name": "Get Order",
+            "description": {
+              "content": "Retrieve a single order by its identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "order",
+                "3",
+                "orders",
+                "1",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) The order identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c6a00f83-37fe-4e60-9c7b-57230e82d96c",
+              "name": "The order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "order",
+                    "3",
+                    "orders",
+                    "1",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) The order identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orderLines\": [\n    {\n      \"productId\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"quantity\": {\n        \"unitOfMeasure\": \"EA\",\n        \"unitOfMeasureLabel\": \"<string>\",\n        \"value\": \"<number>\"\n      },\n      \"unitPrice\": \"<double>\"\n    },\n    {\n      \"productId\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"quantity\": {\n        \"unitOfMeasure\": \"EA\",\n        \"unitOfMeasureLabel\": \"<string>\",\n        \"value\": \"<number>\"\n      },\n      \"unitPrice\": \"<double>\"\n    }\n  ],\n  \"channel\": \"Web\",\n  \"comments\": \"<string>\",\n  \"customer\": {\n    \"email\": \"<email>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\"\n  },\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e7311f23-45ad-4a12-90f7-222d2b391f41",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "order",
+                    "3",
+                    "orders",
+                    "1",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) The order identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8d1d2b2-b9b0-4c0e-8039-ba56e34ca414",
+          "name": "Find Orders",
+          "request": {
+            "name": "Find Orders",
+            "description": {
+              "content": "Search for orders by criteria such as customer email, with paging.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "order",
+                "3",
+                "orders",
+                "1",
+                "find"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageNumber",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "10"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerEmail\": \"<email>\",\n  \"returnFullOrders\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f673828c-eced-49f3-bbb1-292af3499e81",
+              "name": "A page of matching orders.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "order",
+                    "3",
+                    "orders",
+                    "1",
+                    "find"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageNumber",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerEmail\": \"<email>\",\n  \"returnFullOrders\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pageContent\": [\n    {\n      \"orderLines\": [\n        {\n          \"productId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"quantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unitPrice\": \"<double>\"\n        },\n        {\n          \"productId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"quantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unitPrice\": \"<double>\"\n        }\n      ],\n      \"channel\": \"Web\",\n      \"comments\": \"<string>\",\n      \"customer\": {\n        \"email\": \"<email>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\"\n      },\n      \"id\": \"string\"\n    },\n    {\n      \"orderLines\": [\n        {\n          \"productId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"quantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unitPrice\": \"<double>\"\n        },\n        {\n          \"productId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"quantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unitPrice\": \"<double>\"\n        }\n      ],\n      \"channel\": \"Web\",\n      \"comments\": \"<string>\",\n      \"customer\": {\n        \"email\": \"<email>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\"\n      },\n      \"id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f0c9760e-a939-4ba1-8567-1bbd973fecb7",
+      "name": "Site",
+      "description": {
+        "content": "Site (location) provisioning and lookup.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5f370259-6f29-4d9f-bf85-892d1df45551",
+          "name": "Create Site",
+          "request": {
+            "name": "Create Site",
+            "description": {
+              "content": "Create a new site (location) on the NCR Voyix Platform.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "site",
+                "sites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"siteName\": \"<string>\",\n  \"enterpriseUnitName\": \"<string>\",\n  \"status\": \"<string>\",\n  \"coordinates\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3e64704b-6cfd-4458-8c5f-e7c884f1fe2d",
+              "name": "The created site.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "site",
+                    "sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"siteName\": \"<string>\",\n  \"enterpriseUnitName\": \"<string>\",\n  \"status\": \"<string>\",\n  \"coordinates\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"siteName\": \"<string>\",\n  \"enterpriseUnitName\": \"<string>\",\n  \"status\": \"<string>\",\n  \"coordinates\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4dc61e91-7c73-42e2-bb05-86f37e3c30da",
+              "name": "The created site.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "site",
+                    "sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"siteName\": \"<string>\",\n  \"enterpriseUnitName\": \"<string>\",\n  \"status\": \"<string>\",\n  \"coordinates\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"siteName\": \"<string>\",\n  \"enterpriseUnitName\": \"<string>\",\n  \"status\": \"<string>\",\n  \"coordinates\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7727b25b-ff30-4267-be48-0d6aaf4ee9b2",
+          "name": "Find Sites By Criteria",
+          "request": {
+            "name": "Find Sites By Criteria",
+            "description": {
+              "content": "Search for sites matching the supplied criteria, with paging.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "site",
+                "sites",
+                "find-by-criteria"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"criteria\": {\n    \"status\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8f9486ee-f0f8-4f08-84a5-3ded4c3480d4",
+              "name": "A page of matching sites.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "site",
+                    "sites",
+                    "find-by-criteria"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"criteria\": {\n    \"status\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pageContent\": [\n    {\n      \"siteName\": \"<string>\",\n      \"enterpriseUnitName\": \"<string>\",\n      \"status\": \"<string>\",\n      \"coordinates\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"id\": \"string\"\n    },\n    {\n      \"siteName\": \"<string>\",\n      \"enterpriseUnitName\": \"<string>\",\n      \"status\": \"<string>\",\n      \"coordinates\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e66f2cc-392b-4155-964e-2d1eec7b9fc0",
+          "name": "Get Site",
+          "request": {
+            "name": "Get Site",
+            "description": {
+              "content": "Retrieve a single site by its identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "site",
+                "sites",
+                ":siteId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "siteId",
+                  "description": "(Required) The alphanumeric site identifier (not the site name)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8554cf31-b5c5-4831-a488-b54f40e1bba1",
+              "name": "The site.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "site",
+                    "sites",
+                    ":siteId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteId",
+                      "description": "(Required) The alphanumeric site identifier (not the site name)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"siteName\": \"<string>\",\n  \"enterpriseUnitName\": \"<string>\",\n  \"status\": \"<string>\",\n  \"coordinates\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7ecf5a3-c5a1-4967-a66b-066780d2ca43",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "site",
+                    "sites",
+                    ":siteId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteId",
+                      "description": "(Required) The alphanumeric site identifier (not the site name)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "61f4058a-a159-47a5-a136-2915ce0b5ce6",
+          "name": "Update Site",
+          "request": {
+            "name": "Update Site",
+            "description": {
+              "content": "Update a site by its identifier. Set status to INACTIVE to logically delete the site (there is no hard delete).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "site",
+                "sites",
+                ":siteId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "siteId",
+                  "description": "(Required) The alphanumeric site identifier (not the site name)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"siteName\": \"<string>\",\n  \"enterpriseUnitName\": \"<string>\",\n  \"status\": \"<string>\",\n  \"coordinates\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0c9a5ef0-10cf-45d1-96b6-bc01e95c96c9",
+              "name": "The updated site.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "site",
+                    "sites",
+                    ":siteId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteId",
+                      "description": "(Required) The alphanumeric site identifier (not the site name)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"siteName\": \"<string>\",\n  \"enterpriseUnitName\": \"<string>\",\n  \"status\": \"<string>\",\n  \"coordinates\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"siteName\": \"<string>\",\n  \"enterpriseUnitName\": \"<string>\",\n  \"status\": \"<string>\",\n  \"coordinates\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ncr.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a0e54fa8-7a6b-4d45-aa22-044bb0efac7e",
+    "name": "NCR Voyix Commerce Platform APIs (Aloha)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST APIs for Aloha POS via the NCR Voyix Developer Experience (Business Services Platform). Covers Site provisioning, Catalog item and item-price management, Menu details, and Order creation/lookup. Requests are signed with HMAC SHA-512 AccessKey authentication and scoped with the nep-organization and nep-enterprise-unit headers. Paths and schemas in this specification were reconstructed from the publicly published NCR Voyix sample applications (NCRVoyix-Corporation/sample-app-burgers, ncr-retail-demo, ncr-bsp-hmac); consult developer.ncrvoyix.com for the authoritative contract.\n\nContact Support:\n Name: NCR Voyix Developer Experience",
+      "type": "text/plain"
+    }
+  }
+}
