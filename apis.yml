@@ -6,7 +6,7 @@ description: >-
   Aloha POS is a restaurant point-of-sale platform from NCR Voyix. The NCR Voyix Developer Experience exposes APIs for
   Aloha (cloud and on-premise) covering site, store, menu, order, payment, and reporting integrations as part of the
   broader NCR Voyix Commerce Platform.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - POS
   - Restaurant
