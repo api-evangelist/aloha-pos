@@ -1,0 +1,19 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/ncr-voyix-platform-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: hmacAccessKey
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: HMAC authentication. The Authorization header carries "AccessKey {sharedKey}:{signature}",
+    where the signature is a Base64 SHA-512 HMAC computed over the HTTP method, path and query,
+    Content-Type, nep-correlation-id, and nep-organization, keyed by the secret key concatenated
+    with the ISO-8601 request date. See the ncr-bsp-hmac repository for reference implementations.
+  sources:
+  - openapi/ncr-voyix-platform-openapi.yml

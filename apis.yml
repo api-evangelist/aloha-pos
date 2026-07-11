@@ -66,6 +66,10 @@ apis:
       - type: Documentation
         url: https://developer.ncrvoyix.com/portals/dev-portal/api-explorer/details/2021/how-to
 common:
+  - type: DomainSecurity
+    url: security/aloha-pos-domain-security.yml
+  - type: Authentication
+    url: authentication/aloha-pos-authentication.yml
   - type: Website
     url: https://www.ncrvoyix.com/restaurants/aloha-cloud
   - type: Developer
@@ -93,6 +97,8 @@ common:
     url: rate-limits/aloha-pos-rate-limits.yml
   - type: FinOps
     url: finops/aloha-pos-finops.yml
+  - url: https://www.ncrvoyix.com/resources/blog
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
