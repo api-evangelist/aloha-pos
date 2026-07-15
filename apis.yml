@@ -66,6 +66,8 @@ apis:
       - type: Documentation
         url: https://developer.ncrvoyix.com/portals/dev-portal/api-explorer/details/2021/how-to
 common:
+  - type: AgenticAccess
+    url: agentic-access/aloha-pos-agentic-access.yml
   - type: DomainSecurity
     url: security/aloha-pos-domain-security.yml
   - type: Authentication
