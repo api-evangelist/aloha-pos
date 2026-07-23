@@ -1,0 +1,50 @@
+openapi: 3.0.3
+info:
+  title: NCR Voyix Commerce Platform APIs (Aloha) Catalog Menu API
+  description: REST APIs for Aloha POS via the NCR Voyix Developer Experience (Business Services Platform). Covers Site provisioning, Catalog item and item-price management, Menu details, and Order creation/lookup. Requests are signed with HMAC SHA-512 AccessKey authentication and scoped with the nep-organization and nep-enterprise-unit headers. Paths and schemas in this specification were reconstructed from the publicly published NCR Voyix sample applications (NCRVoyix-Corporation/sample-app-burgers, ncr-retail-demo, ncr-bsp-hmac); consult developer.ncrvoyix.com for the authoritative contract.
+  version: '1.0'
+  contact:
+    name: NCR Voyix Developer Experience
+    url: https://developer.ncrvoyix.com/
+  license:
+    name: Proprietary
+    url: https://www.ncrvoyix.com/
+servers:
+- url: https://api.ncr.com
+  description: Production (Business Services Platform)
+- url: https://gateway-staging.ncrcloud.com
+  description: Staging
+security:
+- hmacAccessKey: []
+tags:
+- name: Menu
+  description: Menu structure and details.
+paths:
+  /menu/v2/menu-details/{menuMapping}:
+    get:
+      tags:
+      - Menu
+      summary: Get Menu Details
+      description: Retrieve the full menu structure (categories, items, modifiers) for a menu mapping.
+      operationId: getMenuDetails
+      parameters:
+      - name: menuMapping
+        in: path
+        required: true
+        description: The menu mapping identifier for the site/location.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The menu details.
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    hmacAccessKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: HMAC authentication. The Authorization header carries "AccessKey {sharedKey}:{signature}", where the signature is a Base64 SHA-512 HMAC computed over the HTTP method, path and query, Content-Type, nep-correlation-id, and nep-organization, keyed by the secret key concatenated with the ISO-8601 request date. See the ncr-bsp-hmac repository for reference implementations.

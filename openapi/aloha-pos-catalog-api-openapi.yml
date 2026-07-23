@@ -1,0 +1,278 @@
+openapi: 3.0.3
+info:
+  title: NCR Voyix Commerce Platform APIs (Aloha) Catalog API
+  description: REST APIs for Aloha POS via the NCR Voyix Developer Experience (Business Services Platform). Covers Site provisioning, Catalog item and item-price management, Menu details, and Order creation/lookup. Requests are signed with HMAC SHA-512 AccessKey authentication and scoped with the nep-organization and nep-enterprise-unit headers. Paths and schemas in this specification were reconstructed from the publicly published NCR Voyix sample applications (NCRVoyix-Corporation/sample-app-burgers, ncr-retail-demo, ncr-bsp-hmac); consult developer.ncrvoyix.com for the authoritative contract.
+  version: '1.0'
+  contact:
+    name: NCR Voyix Developer Experience
+    url: https://developer.ncrvoyix.com/
+  license:
+    name: Proprietary
+    url: https://www.ncrvoyix.com/
+servers:
+- url: https://api.ncr.com
+  description: Production (Business Services Platform)
+- url: https://gateway-staging.ncrcloud.com
+  description: Staging
+security:
+- hmacAccessKey: []
+tags:
+- name: Catalog
+  description: Item and item-price management.
+paths:
+  /catalog/items/{itemCode}:
+    parameters:
+    - $ref: '#/components/parameters/ItemCode'
+    get:
+      tags:
+      - Catalog
+      summary: Get Catalog Item
+      description: Retrieve the details of a single catalog item by its item code.
+      operationId: getCatalogItem
+      responses:
+        '200':
+          description: The catalog item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+      - Catalog
+      summary: Create Or Update Catalog Item
+      description: Create or update a catalog item. There is no delete operation; mark an item INACTIVE to retire it. The version must increase on each update.
+      operationId: putCatalogItem
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemInput'
+      responses:
+        '200':
+          description: The created or updated catalog item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+  /catalog/items:
+    get:
+      tags:
+      - Catalog
+      summary: List Catalog Items
+      description: List catalog items, optionally filtered by merchandise category and status.
+      operationId: listCatalogItems
+      parameters:
+      - name: merchandiseCategoryId
+        in: query
+        description: Filter by merchandise category identifier.
+        schema:
+          type: string
+      - name: itemStatus
+        in: query
+        description: Filter by item status.
+        schema:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+      responses:
+        '200':
+          description: A page of catalog items.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemPage'
+  /catalog/item-prices/{itemCode}/{priceId}:
+    parameters:
+    - $ref: '#/components/parameters/ItemCode'
+    - name: priceId
+      in: path
+      required: true
+      description: Unique identifier for the item price.
+      schema:
+        type: string
+    get:
+      tags:
+      - Catalog
+      summary: Get Item Price
+      description: Retrieve a single item price by item code and price identifier.
+      operationId: getItemPrice
+      responses:
+        '200':
+          description: The item price.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemPrice'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+      - Catalog
+      summary: Create Or Update Item Price
+      description: Create or update the price for a catalog item. The version must increase on each update.
+      operationId: putItemPrice
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemPriceInput'
+      responses:
+        '200':
+          description: The created or updated item price.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemPrice'
+  /catalog/item-prices/get-multiple:
+    post:
+      tags:
+      - Catalog
+      summary: Get Multiple Item Prices
+      description: Retrieve prices for a list of catalog items in a single request.
+      operationId: getMultipleItemPrices
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                itemIds:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      itemCode:
+                        type: string
+                    required:
+                    - itemCode
+              required:
+              - itemIds
+      responses:
+        '200':
+          description: The requested item prices.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  itemPrices:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ItemPrice'
+components:
+  schemas:
+    Item:
+      allOf:
+      - $ref: '#/components/schemas/ItemInput'
+      - type: object
+        properties:
+          itemId:
+            type: object
+            additionalProperties:
+              type: string
+    ItemPage:
+      type: object
+      properties:
+        pageContent:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+    ItemInput:
+      type: object
+      properties:
+        version:
+          type: integer
+          description: Optimistic-concurrency version; must increase on each update.
+        shortDescription:
+          $ref: '#/components/schemas/LocalizedText'
+        status:
+          $ref: '#/components/schemas/Status'
+        merchandiseCategory:
+          type: string
+        departmentId:
+          type: string
+      required:
+      - version
+      - status
+    ItemPriceInput:
+      type: object
+      properties:
+        version:
+          type: integer
+        price:
+          type: number
+          format: double
+        currency:
+          type: string
+          example: US Dollar
+        effectiveDate:
+          type: string
+          format: date-time
+        status:
+          $ref: '#/components/schemas/Status'
+      required:
+      - version
+      - price
+    Status:
+      type: string
+      enum:
+      - ACTIVE
+      - INACTIVE
+    LocalizedText:
+      type: object
+      description: A set of locale-specific values.
+      properties:
+        values:
+          type: array
+          items:
+            type: object
+            properties:
+              locale:
+                type: string
+                example: en-US
+              value:
+                type: string
+    ItemPrice:
+      allOf:
+      - $ref: '#/components/schemas/ItemPriceInput'
+      - type: object
+        properties:
+          priceId:
+            type: object
+            properties:
+              itemCode:
+                type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+  parameters:
+    ItemCode:
+      name: itemCode
+      in: path
+      required: true
+      description: The catalog item code (spaces are not permitted).
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    hmacAccessKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: HMAC authentication. The Authorization header carries "AccessKey {sharedKey}:{signature}", where the signature is a Base64 SHA-512 HMAC computed over the HTTP method, path and query, Content-Type, nep-correlation-id, and nep-organization, keyed by the secret key concatenated with the ISO-8601 request date. See the ncr-bsp-hmac repository for reference implementations.

@@ -1,0 +1,184 @@
+openapi: 3.0.3
+info:
+  title: NCR Voyix Commerce Platform APIs (Aloha) Catalog Site API
+  description: REST APIs for Aloha POS via the NCR Voyix Developer Experience (Business Services Platform). Covers Site provisioning, Catalog item and item-price management, Menu details, and Order creation/lookup. Requests are signed with HMAC SHA-512 AccessKey authentication and scoped with the nep-organization and nep-enterprise-unit headers. Paths and schemas in this specification were reconstructed from the publicly published NCR Voyix sample applications (NCRVoyix-Corporation/sample-app-burgers, ncr-retail-demo, ncr-bsp-hmac); consult developer.ncrvoyix.com for the authoritative contract.
+  version: '1.0'
+  contact:
+    name: NCR Voyix Developer Experience
+    url: https://developer.ncrvoyix.com/
+  license:
+    name: Proprietary
+    url: https://www.ncrvoyix.com/
+servers:
+- url: https://api.ncr.com
+  description: Production (Business Services Platform)
+- url: https://gateway-staging.ncrcloud.com
+  description: Staging
+security:
+- hmacAccessKey: []
+tags:
+- name: Site
+  description: Site (location) provisioning and lookup.
+paths:
+  /site/sites:
+    post:
+      tags:
+      - Site
+      summary: Create Site
+      description: Create a new site (location) on the NCR Voyix Platform.
+      operationId: createSite
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SiteInput'
+      responses:
+        '200':
+          description: The created site.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+        '201':
+          description: The created site.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+  /site/sites/find-by-criteria:
+    post:
+      tags:
+      - Site
+      summary: Find Sites By Criteria
+      description: Search for sites matching the supplied criteria, with paging.
+      operationId: findSitesByCriteria
+      parameters:
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                criteria:
+                  type: object
+                  properties:
+                    status:
+                      $ref: '#/components/schemas/Status'
+      responses:
+        '200':
+          description: A page of matching sites.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pageContent:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Site'
+  /site/sites/{siteId}:
+    parameters:
+    - name: siteId
+      in: path
+      required: true
+      description: The alphanumeric site identifier (not the site name).
+      schema:
+        type: string
+    get:
+      tags:
+      - Site
+      summary: Get Site
+      description: Retrieve a single site by its identifier.
+      operationId: getSite
+      responses:
+        '200':
+          description: The site.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+      - Site
+      summary: Update Site
+      description: Update a site by its identifier. Set status to INACTIVE to logically delete the site (there is no hard delete).
+      operationId: updateSite
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SiteInput'
+      responses:
+        '200':
+          description: The updated site.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+components:
+  schemas:
+    Coordinates:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+    SiteInput:
+      type: object
+      properties:
+        siteName:
+          type: string
+        enterpriseUnitName:
+          type: string
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        status:
+          $ref: '#/components/schemas/Status'
+      required:
+      - siteName
+      - enterpriseUnitName
+      - status
+    Status:
+      type: string
+      enum:
+      - ACTIVE
+      - INACTIVE
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    Site:
+      allOf:
+      - $ref: '#/components/schemas/SiteInput'
+      - type: object
+        properties:
+          id:
+            type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    hmacAccessKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: HMAC authentication. The Authorization header carries "AccessKey {sharedKey}:{signature}", where the signature is a Base64 SHA-512 HMAC computed over the HTTP method, path and query, Content-Type, nep-correlation-id, and nep-organization, keyed by the secret key concatenated with the ISO-8601 request date. See the ncr-bsp-hmac repository for reference implementations.

@@ -1,0 +1,213 @@
+openapi: 3.0.3
+info:
+  title: NCR Voyix Commerce Platform APIs (Aloha) Catalog Order API
+  description: REST APIs for Aloha POS via the NCR Voyix Developer Experience (Business Services Platform). Covers Site provisioning, Catalog item and item-price management, Menu details, and Order creation/lookup. Requests are signed with HMAC SHA-512 AccessKey authentication and scoped with the nep-organization and nep-enterprise-unit headers. Paths and schemas in this specification were reconstructed from the publicly published NCR Voyix sample applications (NCRVoyix-Corporation/sample-app-burgers, ncr-retail-demo, ncr-bsp-hmac); consult developer.ncrvoyix.com for the authoritative contract.
+  version: '1.0'
+  contact:
+    name: NCR Voyix Developer Experience
+    url: https://developer.ncrvoyix.com/
+  license:
+    name: Proprietary
+    url: https://www.ncrvoyix.com/
+servers:
+- url: https://api.ncr.com
+  description: Production (Business Services Platform)
+- url: https://gateway-staging.ncrcloud.com
+  description: Staging
+security:
+- hmacAccessKey: []
+tags:
+- name: Order
+  description: Order creation and lookup.
+paths:
+  /order/orders:
+    post:
+      tags:
+      - Order
+      summary: Create Order
+      description: Create a new check/order for a given location and revenue center. Requires the nep-enterprise-unit header identifying the location.
+      operationId: createOrder
+      parameters:
+      - $ref: '#/components/parameters/NepEnterpriseUnit'
+      - $ref: '#/components/parameters/NepServiceVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderInput'
+      responses:
+        '200':
+          description: The created order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '201':
+          description: The created order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /order/3/orders/1/{orderId}:
+    get:
+      tags:
+      - Order
+      summary: Get Order
+      description: Retrieve a single order by its identifier.
+      operationId: getOrder
+      parameters:
+      - name: orderId
+        in: path
+        required: true
+        description: The order identifier.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /order/3/orders/1/find:
+    post:
+      tags:
+      - Order
+      summary: Find Orders
+      description: Search for orders by criteria such as customer email, with paging.
+      operationId: findOrders
+      parameters:
+      - name: pageNumber
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+          default: 10
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customerEmail:
+                  type: string
+                  format: email
+                returnFullOrders:
+                  type: boolean
+      responses:
+        '200':
+          description: A page of matching orders.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pageContent:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
+components:
+  schemas:
+    Quantity:
+      type: object
+      properties:
+        unitOfMeasure:
+          type: string
+          example: EA
+        unitOfMeasureLabel:
+          type: string
+        value:
+          type: number
+    OrderInput:
+      type: object
+      properties:
+        channel:
+          type: string
+          example: Web
+        comments:
+          type: string
+        customer:
+          $ref: '#/components/schemas/Customer'
+        orderLines:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderLine'
+      required:
+      - orderLines
+    ProductId:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+    Customer:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        firstName:
+          type: string
+        lastName:
+          type: string
+    Order:
+      allOf:
+      - $ref: '#/components/schemas/OrderInput'
+      - type: object
+        properties:
+          id:
+            type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    OrderLine:
+      type: object
+      properties:
+        productId:
+          $ref: '#/components/schemas/ProductId'
+        quantity:
+          $ref: '#/components/schemas/Quantity'
+        unitPrice:
+          type: number
+          format: double
+  parameters:
+    NepEnterpriseUnit:
+      name: nep-enterprise-unit
+      in: header
+      required: true
+      description: Identifier of the enterprise unit (location) the request applies to.
+      schema:
+        type: string
+    NepServiceVersion:
+      name: nep-service-version
+      in: header
+      required: false
+      description: The targeted service version (e.g. "3:1").
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    hmacAccessKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: HMAC authentication. The Authorization header carries "AccessKey {sharedKey}:{signature}", where the signature is a Base64 SHA-512 HMAC computed over the HTTP method, path and query, Content-Type, nep-correlation-id, and nep-organization, keyed by the secret key concatenated with the ISO-8601 request date. See the ncr-bsp-hmac repository for reference implementations.
