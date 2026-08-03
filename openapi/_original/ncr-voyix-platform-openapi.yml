@@ -1,0 +1,629 @@
+openapi: 3.0.3
+info:
+  title: NCR Voyix Commerce Platform APIs (Aloha)
+  description: >-
+    REST APIs for Aloha POS via the NCR Voyix Developer Experience (Business
+    Services Platform). Covers Site provisioning, Catalog item and item-price
+    management, Menu details, and Order creation/lookup. Requests are signed
+    with HMAC SHA-512 AccessKey authentication and scoped with the
+    nep-organization and nep-enterprise-unit headers. Paths and schemas in this
+    specification were reconstructed from the publicly published NCR Voyix
+    sample applications (NCRVoyix-Corporation/sample-app-burgers,
+    ncr-retail-demo, ncr-bsp-hmac); consult developer.ncrvoyix.com for the
+    authoritative contract.
+  version: '1.0'
+  contact:
+    name: NCR Voyix Developer Experience
+    url: https://developer.ncrvoyix.com/
+  license:
+    name: Proprietary
+    url: https://www.ncrvoyix.com/
+servers:
+  - url: https://api.ncr.com
+    description: Production (Business Services Platform)
+  - url: https://gateway-staging.ncrcloud.com
+    description: Staging
+security:
+  - hmacAccessKey: []
+tags:
+  - name: Catalog
+    description: Item and item-price management.
+  - name: Menu
+    description: Menu structure and details.
+  - name: Order
+    description: Order creation and lookup.
+  - name: Site
+    description: Site (location) provisioning and lookup.
+paths:
+  /catalog/items/{itemCode}:
+    parameters:
+      - $ref: '#/components/parameters/ItemCode'
+    get:
+      tags:
+        - Catalog
+      summary: Get Catalog Item
+      description: Retrieve the details of a single catalog item by its item code.
+      operationId: getCatalogItem
+      responses:
+        '200':
+          description: The catalog item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Catalog
+      summary: Create Or Update Catalog Item
+      description: >-
+        Create or update a catalog item. There is no delete operation; mark an
+        item INACTIVE to retire it. The version must increase on each update.
+      operationId: putCatalogItem
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemInput'
+      responses:
+        '200':
+          description: The created or updated catalog item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+  /catalog/items:
+    get:
+      tags:
+        - Catalog
+      summary: List Catalog Items
+      description: List catalog items, optionally filtered by merchandise category and status.
+      operationId: listCatalogItems
+      parameters:
+        - name: merchandiseCategoryId
+          in: query
+          description: Filter by merchandise category identifier.
+          schema:
+            type: string
+        - name: itemStatus
+          in: query
+          description: Filter by item status.
+          schema:
+            type: string
+            enum:
+              - ACTIVE
+              - INACTIVE
+      responses:
+        '200':
+          description: A page of catalog items.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemPage'
+  /catalog/item-prices/{itemCode}/{priceId}:
+    parameters:
+      - $ref: '#/components/parameters/ItemCode'
+      - name: priceId
+        in: path
+        required: true
+        description: Unique identifier for the item price.
+        schema:
+          type: string
+    get:
+      tags:
+        - Catalog
+      summary: Get Item Price
+      description: Retrieve a single item price by item code and price identifier.
+      operationId: getItemPrice
+      responses:
+        '200':
+          description: The item price.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemPrice'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Catalog
+      summary: Create Or Update Item Price
+      description: Create or update the price for a catalog item. The version must increase on each update.
+      operationId: putItemPrice
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemPriceInput'
+      responses:
+        '200':
+          description: The created or updated item price.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemPrice'
+  /catalog/item-prices/get-multiple:
+    post:
+      tags:
+        - Catalog
+      summary: Get Multiple Item Prices
+      description: Retrieve prices for a list of catalog items in a single request.
+      operationId: getMultipleItemPrices
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                itemIds:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      itemCode:
+                        type: string
+                    required:
+                      - itemCode
+              required:
+                - itemIds
+      responses:
+        '200':
+          description: The requested item prices.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  itemPrices:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ItemPrice'
+  /menu/v2/menu-details/{menuMapping}:
+    get:
+      tags:
+        - Menu
+      summary: Get Menu Details
+      description: Retrieve the full menu structure (categories, items, modifiers) for a menu mapping.
+      operationId: getMenuDetails
+      parameters:
+        - name: menuMapping
+          in: path
+          required: true
+          description: The menu mapping identifier for the site/location.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The menu details.
+          content:
+            application/json:
+              schema:
+                type: object
+  /order/orders:
+    post:
+      tags:
+        - Order
+      summary: Create Order
+      description: >-
+        Create a new check/order for a given location and revenue center.
+        Requires the nep-enterprise-unit header identifying the location.
+      operationId: createOrder
+      parameters:
+        - $ref: '#/components/parameters/NepEnterpriseUnit'
+        - $ref: '#/components/parameters/NepServiceVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderInput'
+      responses:
+        '200':
+          description: The created order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '201':
+          description: The created order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /order/3/orders/1/{orderId}:
+    get:
+      tags:
+        - Order
+      summary: Get Order
+      description: Retrieve a single order by its identifier.
+      operationId: getOrder
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          description: The order identifier.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /order/3/orders/1/find:
+    post:
+      tags:
+        - Order
+      summary: Find Orders
+      description: Search for orders by criteria such as customer email, with paging.
+      operationId: findOrders
+      parameters:
+        - name: pageNumber
+          in: query
+          schema:
+            type: integer
+            default: 0
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            default: 10
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customerEmail:
+                  type: string
+                  format: email
+                returnFullOrders:
+                  type: boolean
+      responses:
+        '200':
+          description: A page of matching orders.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pageContent:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
+  /site/sites:
+    post:
+      tags:
+        - Site
+      summary: Create Site
+      description: Create a new site (location) on the NCR Voyix Platform.
+      operationId: createSite
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SiteInput'
+      responses:
+        '200':
+          description: The created site.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+        '201':
+          description: The created site.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+  /site/sites/find-by-criteria:
+    post:
+      tags:
+        - Site
+      summary: Find Sites By Criteria
+      description: Search for sites matching the supplied criteria, with paging.
+      operationId: findSitesByCriteria
+      parameters:
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                criteria:
+                  type: object
+                  properties:
+                    status:
+                      $ref: '#/components/schemas/Status'
+      responses:
+        '200':
+          description: A page of matching sites.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pageContent:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Site'
+  /site/sites/{siteId}:
+    parameters:
+      - name: siteId
+        in: path
+        required: true
+        description: The alphanumeric site identifier (not the site name).
+        schema:
+          type: string
+    get:
+      tags:
+        - Site
+      summary: Get Site
+      description: Retrieve a single site by its identifier.
+      operationId: getSite
+      responses:
+        '200':
+          description: The site.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Site
+      summary: Update Site
+      description: >-
+        Update a site by its identifier. Set status to INACTIVE to logically
+        delete the site (there is no hard delete).
+      operationId: updateSite
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SiteInput'
+      responses:
+        '200':
+          description: The updated site.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+components:
+  securitySchemes:
+    hmacAccessKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        HMAC authentication. The Authorization header carries
+        "AccessKey {sharedKey}:{signature}", where the signature is a Base64
+        SHA-512 HMAC computed over the HTTP method, path and query, Content-Type,
+        nep-correlation-id, and nep-organization, keyed by the secret key
+        concatenated with the ISO-8601 request date. See the ncr-bsp-hmac
+        repository for reference implementations.
+  parameters:
+    ItemCode:
+      name: itemCode
+      in: path
+      required: true
+      description: The catalog item code (spaces are not permitted).
+      schema:
+        type: string
+    NepEnterpriseUnit:
+      name: nep-enterprise-unit
+      in: header
+      required: true
+      description: Identifier of the enterprise unit (location) the request applies to.
+      schema:
+        type: string
+    NepServiceVersion:
+      name: nep-service-version
+      in: header
+      required: false
+      description: The targeted service version (e.g. "3:1").
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Status:
+      type: string
+      enum:
+        - ACTIVE
+        - INACTIVE
+    LocalizedText:
+      type: object
+      description: A set of locale-specific values.
+      properties:
+        values:
+          type: array
+          items:
+            type: object
+            properties:
+              locale:
+                type: string
+                example: en-US
+              value:
+                type: string
+    ItemInput:
+      type: object
+      properties:
+        version:
+          type: integer
+          description: Optimistic-concurrency version; must increase on each update.
+        shortDescription:
+          $ref: '#/components/schemas/LocalizedText'
+        status:
+          $ref: '#/components/schemas/Status'
+        merchandiseCategory:
+          type: string
+        departmentId:
+          type: string
+      required:
+        - version
+        - status
+    Item:
+      allOf:
+        - $ref: '#/components/schemas/ItemInput'
+        - type: object
+          properties:
+            itemId:
+              type: object
+              additionalProperties:
+                type: string
+    ItemPage:
+      type: object
+      properties:
+        pageContent:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+    ItemPriceInput:
+      type: object
+      properties:
+        version:
+          type: integer
+        price:
+          type: number
+          format: double
+        currency:
+          type: string
+          example: US Dollar
+        effectiveDate:
+          type: string
+          format: date-time
+        status:
+          $ref: '#/components/schemas/Status'
+      required:
+        - version
+        - price
+    ItemPrice:
+      allOf:
+        - $ref: '#/components/schemas/ItemPriceInput'
+        - type: object
+          properties:
+            priceId:
+              type: object
+              properties:
+                itemCode:
+                  type: string
+    Coordinates:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+    SiteInput:
+      type: object
+      properties:
+        siteName:
+          type: string
+        enterpriseUnitName:
+          type: string
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        status:
+          $ref: '#/components/schemas/Status'
+      required:
+        - siteName
+        - enterpriseUnitName
+        - status
+    Site:
+      allOf:
+        - $ref: '#/components/schemas/SiteInput'
+        - type: object
+          properties:
+            id:
+              type: string
+    ProductId:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+    Quantity:
+      type: object
+      properties:
+        unitOfMeasure:
+          type: string
+          example: EA
+        unitOfMeasureLabel:
+          type: string
+        value:
+          type: number
+    OrderLine:
+      type: object
+      properties:
+        productId:
+          $ref: '#/components/schemas/ProductId'
+        quantity:
+          $ref: '#/components/schemas/Quantity'
+        unitPrice:
+          type: number
+          format: double
+    Customer:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        firstName:
+          type: string
+        lastName:
+          type: string
+    OrderInput:
+      type: object
+      properties:
+        channel:
+          type: string
+          example: Web
+        comments:
+          type: string
+        customer:
+          $ref: '#/components/schemas/Customer'
+        orderLines:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderLine'
+      required:
+        - orderLines
+    Order:
+      allOf:
+        - $ref: '#/components/schemas/OrderInput'
+        - type: object
+          properties:
+            id:
+              type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string

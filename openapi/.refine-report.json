@@ -1,0 +1,20 @@
+{
+  "provider": "aloha-pos",
+  "sources": [
+    "aloha-pos-catalog-api-openapi.yml",
+    "aloha-pos-menu-api-openapi.yml",
+    "aloha-pos-order-api-openapi.yml",
+    "aloha-pos-site-api-openapi.yml"
+  ],
+  "outputs": [
+    "aloha-pos-catalog-api-openapi.yml",
+    "aloha-pos-menu-api-openapi.yml",
+    "aloha-pos-order-api-openapi.yml",
+    "aloha-pos-site-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
