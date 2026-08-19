@@ -27,7 +27,7 @@ tags:
   - NCR
 created: '2026-05-08'
 modified: '2026-06-02'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: aloha-pos:aloha-cloud-api
   name: Aloha Cloud APIs
