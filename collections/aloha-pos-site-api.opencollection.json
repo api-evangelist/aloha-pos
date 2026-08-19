@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NCR Voyix Commerce Platform APIs (Aloha) Catalog Site API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Site",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Site",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ncr.com/site/sites",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new site (location) on the NCR Voyix Platform."
+        },
+        {
+          "info": {
+            "name": "Find Sites By Criteria",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ncr.com/site/sites/find-by-criteria",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search for sites matching the supplied criteria, with paging."
+        },
+        {
+          "info": {
+            "name": "Get Site",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ncr.com/site/sites/:siteId",
+            "params": [
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "path",
+                "description": "The alphanumeric site identifier (not the site name)."
+              }
+            ]
+          },
+          "docs": "Retrieve a single site by its identifier."
+        },
+        {
+          "info": {
+            "name": "Update Site",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ncr.com/site/sites/:siteId",
+            "params": [
+              {
+                "name": "siteId",
+                "value": "",
+                "type": "path",
+                "description": "The alphanumeric site identifier (not the site name)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a site by its identifier. Set status to INACTIVE to logically delete the site (there is no hard delete)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

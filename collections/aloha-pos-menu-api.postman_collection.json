@@ -1,0 +1,149 @@
+{
+  "item": [
+    {
+      "id": "55996e78-a4a2-4814-a840-3979265a4400",
+      "name": "Menu",
+      "description": {
+        "content": "Menu structure and details.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c75e8543-7390-434b-b20e-996de79c6448",
+          "name": "Get Menu Details",
+          "request": {
+            "name": "Get Menu Details",
+            "description": {
+              "content": "Retrieve the full menu structure (categories, items, modifiers) for a menu mapping.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "menu",
+                "v2",
+                "menu-details",
+                ":menuMapping"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "menuMapping",
+                  "description": "(Required) The menu mapping identifier for the site/location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2b729505-4086-499f-8914-512c580f6ead",
+              "name": "The menu details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "menu",
+                    "v2",
+                    "menu-details",
+                    ":menuMapping"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "menuMapping",
+                      "description": "(Required) The menu mapping identifier for the site/location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ncr.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "84448117-97a1-4dd5-b238-7f38aabad19b",
+    "name": "NCR Voyix Commerce Platform APIs (Aloha) Catalog Menu API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST APIs for Aloha POS via the NCR Voyix Developer Experience (Business Services Platform). Covers Site provisioning, Catalog item and item-price management, Menu details, and Order creation/lookup. Requests are signed with HMAC SHA-512 AccessKey authentication and scoped with the nep-organization and nep-enterprise-unit headers. Paths and schemas in this specification were reconstructed from the publicly published NCR Voyix sample applications (NCRVoyix-Corporation/sample-app-burgers, ncr-retail-demo, ncr-bsp-hmac); consult developer.ncrvoyix.com for the authoritative contract.\n\nContact Support:\n Name: NCR Voyix Developer Experience",
+      "type": "text/plain"
+    }
+  }
+}

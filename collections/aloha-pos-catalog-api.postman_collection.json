@@ -1,0 +1,834 @@
+{
+  "item": [
+    {
+      "id": "cb47a7b0-014d-43d5-8748-68e0c725be27",
+      "name": "Catalog",
+      "description": {
+        "content": "Item and item-price management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6e77381a-c7e1-4b7b-8aa6-5c1787008365",
+          "name": "Get Catalog Item",
+          "request": {
+            "name": "Get Catalog Item",
+            "description": {
+              "content": "Retrieve the details of a single catalog item by its item code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "catalog",
+                "items",
+                ":itemCode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemCode",
+                  "description": "(Required) The catalog item code (spaces are not permitted)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ef3bc610-f53c-4963-a2c3-da7a4ee01fc6",
+              "name": "The catalog item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "items",
+                    ":itemCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemCode",
+                      "description": "(Required) The catalog item code (spaces are not permitted)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": 3378,\n  \"status\": \"INACTIVE\",\n  \"shortDescription\": {\n    \"values\": [\n      {\n        \"locale\": \"en-US\",\n        \"value\": \"string\"\n      },\n      {\n        \"locale\": \"en-US\",\n        \"value\": \"string\"\n      }\n    ]\n  },\n  \"merchandiseCategory\": \"string\",\n  \"departmentId\": \"string\",\n  \"itemId\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2656d752-0094-421b-8aa0-9f41847121fa",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "items",
+                    ":itemCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemCode",
+                      "description": "(Required) The catalog item code (spaces are not permitted)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "29955133-d684-485e-ad9e-3148ece53650",
+          "name": "Create Or Update Catalog Item",
+          "request": {
+            "name": "Create Or Update Catalog Item",
+            "description": {
+              "content": "Create or update a catalog item. There is no delete operation; mark an item INACTIVE to retire it. The version must increase on each update.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "catalog",
+                "items",
+                ":itemCode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemCode",
+                  "description": "(Required) The catalog item code (spaces are not permitted)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"version\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"shortDescription\": {\n    \"values\": [\n      {\n        \"locale\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"locale\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  },\n  \"merchandiseCategory\": \"<string>\",\n  \"departmentId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2a0923e2-1aa0-411e-8e90-5032489a6964",
+              "name": "The created or updated catalog item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "items",
+                    ":itemCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemCode",
+                      "description": "(Required) The catalog item code (spaces are not permitted)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"version\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"shortDescription\": {\n    \"values\": [\n      {\n        \"locale\": \"en-US\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"locale\": \"en-US\",\n        \"value\": \"<string>\"\n      }\n    ]\n  },\n  \"merchandiseCategory\": \"<string>\",\n  \"departmentId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"shortDescription\": {\n    \"values\": [\n      {\n        \"locale\": \"en-US\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"locale\": \"en-US\",\n        \"value\": \"<string>\"\n      }\n    ]\n  },\n  \"merchandiseCategory\": \"<string>\",\n  \"departmentId\": \"<string>\",\n  \"itemId\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d99ab4f5-ead2-433e-9d56-2c3d44795d4b",
+          "name": "List Catalog Items",
+          "request": {
+            "name": "List Catalog Items",
+            "description": {
+              "content": "List catalog items, optionally filtered by merchandise category and status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "catalog",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "merchandiseCategoryId",
+                  "value": "<string>",
+                  "description": "Filter by merchandise category identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "itemStatus",
+                  "value": "<string>",
+                  "description": "Filter by item status."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e5b9b1a9-65d4-4082-9754-245b2c83f1b8",
+              "name": "A page of catalog items.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchandiseCategoryId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "itemStatus",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pageContent\": [\n    {\n      \"version\": \"<integer>\",\n      \"status\": \"<string>\",\n      \"shortDescription\": {\n        \"values\": [\n          {\n            \"locale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"locale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"merchandiseCategory\": \"<string>\",\n      \"departmentId\": \"<string>\",\n      \"itemId\": {\n        \"key_0\": \"string\"\n      }\n    },\n    {\n      \"version\": \"<integer>\",\n      \"status\": \"<string>\",\n      \"shortDescription\": {\n        \"values\": [\n          {\n            \"locale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"locale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"merchandiseCategory\": \"<string>\",\n      \"departmentId\": \"<string>\",\n      \"itemId\": {\n        \"key_0\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b54552ac-fb76-4a1c-8b26-fbc3c9f5d103",
+          "name": "Get Item Price",
+          "request": {
+            "name": "Get Item Price",
+            "description": {
+              "content": "Retrieve a single item price by item code and price identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "catalog",
+                "item-prices",
+                ":itemCode",
+                ":priceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemCode",
+                  "description": "(Required) The catalog item code (spaces are not permitted)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "priceId",
+                  "description": "(Required) Unique identifier for the item price."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a1d79e68-e45e-4514-ba49-c47c7d88c965",
+              "name": "The item price.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "item-prices",
+                    ":itemCode",
+                    ":priceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemCode",
+                      "description": "(Required) The catalog item code (spaces are not permitted)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "priceId",
+                      "description": "(Required) Unique identifier for the item price."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": 2272,\n  \"price\": 5631.285909528686,\n  \"currency\": \"US Dollar\",\n  \"effectiveDate\": \"1977-07-02T21:31:12.982Z\",\n  \"status\": \"<string>\",\n  \"priceId\": {\n    \"itemCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4c0f5d3-c875-42bc-a62d-a1cc946204cb",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "item-prices",
+                    ":itemCode",
+                    ":priceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemCode",
+                      "description": "(Required) The catalog item code (spaces are not permitted)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "priceId",
+                      "description": "(Required) Unique identifier for the item price."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1caa8034-5942-416d-8305-9b41cf70e5a6",
+          "name": "Create Or Update Item Price",
+          "request": {
+            "name": "Create Or Update Item Price",
+            "description": {
+              "content": "Create or update the price for a catalog item. The version must increase on each update.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "catalog",
+                "item-prices",
+                ":itemCode",
+                ":priceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemCode",
+                  "description": "(Required) The catalog item code (spaces are not permitted)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "priceId",
+                  "description": "(Required) Unique identifier for the item price."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"version\": \"<integer>\",\n  \"price\": \"<double>\",\n  \"currency\": \"<string>\",\n  \"effectiveDate\": \"<dateTime>\",\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f7dd437c-f6aa-47df-bce1-a6fd219b0926",
+              "name": "The created or updated item price.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "item-prices",
+                    ":itemCode",
+                    ":priceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemCode",
+                      "description": "(Required) The catalog item code (spaces are not permitted)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "priceId",
+                      "description": "(Required) Unique identifier for the item price."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"version\": \"<integer>\",\n  \"price\": \"<double>\",\n  \"currency\": \"US Dollar\",\n  \"effectiveDate\": \"<dateTime>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": \"<integer>\",\n  \"price\": \"<double>\",\n  \"currency\": \"US Dollar\",\n  \"effectiveDate\": \"<dateTime>\",\n  \"status\": \"<string>\",\n  \"priceId\": {\n    \"itemCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5e204c1-3fd6-4f5a-99f4-3f50b7534bb2",
+          "name": "Get Multiple Item Prices",
+          "request": {
+            "name": "Get Multiple Item Prices",
+            "description": {
+              "content": "Retrieve prices for a list of catalog items in a single request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "catalog",
+                "item-prices",
+                "get-multiple"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"itemIds\": [\n    {\n      \"itemCode\": \"<string>\"\n    },\n    {\n      \"itemCode\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "78c89169-5923-479f-8149-42379d26a276",
+              "name": "The requested item prices.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "item-prices",
+                    "get-multiple"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"itemIds\": [\n    {\n      \"itemCode\": \"<string>\"\n    },\n    {\n      \"itemCode\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"itemPrices\": [\n    {\n      \"version\": \"<integer>\",\n      \"price\": \"<double>\",\n      \"currency\": \"US Dollar\",\n      \"effectiveDate\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"priceId\": {\n        \"itemCode\": \"string\"\n      }\n    },\n    {\n      \"version\": \"<integer>\",\n      \"price\": \"<double>\",\n      \"currency\": \"US Dollar\",\n      \"effectiveDate\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"priceId\": {\n        \"itemCode\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ncr.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f9c6e062-c73e-4998-99d1-a935157f1a98",
+    "name": "NCR Voyix Commerce Platform APIs (Aloha) Catalog API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST APIs for Aloha POS via the NCR Voyix Developer Experience (Business Services Platform). Covers Site provisioning, Catalog item and item-price management, Menu details, and Order creation/lookup. Requests are signed with HMAC SHA-512 AccessKey authentication and scoped with the nep-organization and nep-enterprise-unit headers. Paths and schemas in this specification were reconstructed from the publicly published NCR Voyix sample applications (NCRVoyix-Corporation/sample-app-burgers, ncr-retail-demo, ncr-bsp-hmac); consult developer.ncrvoyix.com for the authoritative contract.\n\nContact Support:\n Name: NCR Voyix Developer Experience",
+      "type": "text/plain"
+    }
+  }
+}

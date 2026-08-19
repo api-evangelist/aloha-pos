@@ -1,0 +1,162 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NCR Voyix Commerce Platform APIs (Aloha) Catalog API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Catalog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Catalog Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ncr.com/catalog/items/:itemCode",
+            "params": [
+              {
+                "name": "itemCode",
+                "value": "",
+                "type": "path",
+                "description": "The catalog item code (spaces are not permitted)."
+              }
+            ]
+          },
+          "docs": "Retrieve the details of a single catalog item by its item code."
+        },
+        {
+          "info": {
+            "name": "Create Or Update Catalog Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ncr.com/catalog/items/:itemCode",
+            "params": [
+              {
+                "name": "itemCode",
+                "value": "",
+                "type": "path",
+                "description": "The catalog item code (spaces are not permitted)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update a catalog item. There is no delete operation; mark an item INACTIVE to retire it. The version must increase on each update."
+        },
+        {
+          "info": {
+            "name": "List Catalog Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ncr.com/catalog/items",
+            "params": [
+              {
+                "name": "merchandiseCategoryId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by merchandise category identifier."
+              },
+              {
+                "name": "itemStatus",
+                "value": "",
+                "type": "query",
+                "description": "Filter by item status."
+              }
+            ]
+          },
+          "docs": "List catalog items, optionally filtered by merchandise category and status."
+        },
+        {
+          "info": {
+            "name": "Get Item Price",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ncr.com/catalog/item-prices/:itemCode/:priceId",
+            "params": [
+              {
+                "name": "itemCode",
+                "value": "",
+                "type": "path",
+                "description": "The catalog item code (spaces are not permitted)."
+              },
+              {
+                "name": "priceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the item price."
+              }
+            ]
+          },
+          "docs": "Retrieve a single item price by item code and price identifier."
+        },
+        {
+          "info": {
+            "name": "Create Or Update Item Price",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ncr.com/catalog/item-prices/:itemCode/:priceId",
+            "params": [
+              {
+                "name": "itemCode",
+                "value": "",
+                "type": "path",
+                "description": "The catalog item code (spaces are not permitted)."
+              },
+              {
+                "name": "priceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the item price."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update the price for a catalog item. The version must increase on each update."
+        },
+        {
+          "info": {
+            "name": "Get Multiple Item Prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ncr.com/catalog/item-prices/get-multiple",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve prices for a list of catalog items in a single request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,522 @@
+{
+  "item": [
+    {
+      "id": "9d60e0ba-edb4-47cb-ab82-0d937cf520d4",
+      "name": "Order",
+      "description": {
+        "content": "Order creation and lookup.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2a8f61a9-4394-4345-a68b-6441c76f7444",
+          "name": "Create Order",
+          "request": {
+            "name": "Create Order",
+            "description": {
+              "content": "Create a new check/order for a given location and revenue center. Requires the nep-enterprise-unit header identifying the location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "order",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Identifier of the enterprise unit (location) the request applies to.",
+                "key": "nep-enterprise-unit",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "The targeted service version (e.g. \"3:1\").",
+                "key": "nep-service-version",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderLines\": [\n    {\n      \"productId\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"quantity\": {\n        \"unitOfMeasure\": \"<string>\",\n        \"unitOfMeasureLabel\": \"<string>\",\n        \"value\": \"<number>\"\n      },\n      \"unitPrice\": \"<double>\"\n    },\n    {\n      \"productId\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"quantity\": {\n        \"unitOfMeasure\": \"<string>\",\n        \"unitOfMeasureLabel\": \"<string>\",\n        \"value\": \"<number>\"\n      },\n      \"unitPrice\": \"<double>\"\n    }\n  ],\n  \"channel\": \"<string>\",\n  \"comments\": \"<string>\",\n  \"customer\": {\n    \"email\": \"<email>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a9e609be-c081-4552-8ccb-f0d1f98d9f9f",
+              "name": "The created order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "order",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Identifier of the enterprise unit (location) the request applies to.",
+                    "key": "nep-enterprise-unit",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The targeted service version (e.g. \"3:1\").",
+                    "key": "nep-service-version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderLines\": [\n    {\n      \"productId\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"quantity\": {\n        \"unitOfMeasure\": \"EA\",\n        \"unitOfMeasureLabel\": \"<string>\",\n        \"value\": \"<number>\"\n      },\n      \"unitPrice\": \"<double>\"\n    },\n    {\n      \"productId\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"quantity\": {\n        \"unitOfMeasure\": \"EA\",\n        \"unitOfMeasureLabel\": \"<string>\",\n        \"value\": \"<number>\"\n      },\n      \"unitPrice\": \"<double>\"\n    }\n  ],\n  \"channel\": \"Web\",\n  \"comments\": \"<string>\",\n  \"customer\": {\n    \"email\": \"<email>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orderLines\": [\n    {\n      \"productId\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"quantity\": {\n        \"unitOfMeasure\": \"EA\",\n        \"unitOfMeasureLabel\": \"<string>\",\n        \"value\": \"<number>\"\n      },\n      \"unitPrice\": \"<double>\"\n    },\n    {\n      \"productId\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"quantity\": {\n        \"unitOfMeasure\": \"EA\",\n        \"unitOfMeasureLabel\": \"<string>\",\n        \"value\": \"<number>\"\n      },\n      \"unitPrice\": \"<double>\"\n    }\n  ],\n  \"channel\": \"Web\",\n  \"comments\": \"<string>\",\n  \"customer\": {\n    \"email\": \"<email>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\"\n  },\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10e14d44-51b1-42ad-87cb-2d6b6415b117",
+              "name": "The created order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "order",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Identifier of the enterprise unit (location) the request applies to.",
+                    "key": "nep-enterprise-unit",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The targeted service version (e.g. \"3:1\").",
+                    "key": "nep-service-version",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderLines\": [\n    {\n      \"productId\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"quantity\": {\n        \"unitOfMeasure\": \"EA\",\n        \"unitOfMeasureLabel\": \"<string>\",\n        \"value\": \"<number>\"\n      },\n      \"unitPrice\": \"<double>\"\n    },\n    {\n      \"productId\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"quantity\": {\n        \"unitOfMeasure\": \"EA\",\n        \"unitOfMeasureLabel\": \"<string>\",\n        \"value\": \"<number>\"\n      },\n      \"unitPrice\": \"<double>\"\n    }\n  ],\n  \"channel\": \"Web\",\n  \"comments\": \"<string>\",\n  \"customer\": {\n    \"email\": \"<email>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orderLines\": [\n    {\n      \"productId\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"quantity\": {\n        \"unitOfMeasure\": \"EA\",\n        \"unitOfMeasureLabel\": \"<string>\",\n        \"value\": \"<number>\"\n      },\n      \"unitPrice\": \"<double>\"\n    },\n    {\n      \"productId\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"quantity\": {\n        \"unitOfMeasure\": \"EA\",\n        \"unitOfMeasureLabel\": \"<string>\",\n        \"value\": \"<number>\"\n      },\n      \"unitPrice\": \"<double>\"\n    }\n  ],\n  \"channel\": \"Web\",\n  \"comments\": \"<string>\",\n  \"customer\": {\n    \"email\": \"<email>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\"\n  },\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "af7f5cf2-5942-4080-b36f-3b81bc755ba8",
+          "name": "Get Order",
+          "request": {
+            "name": "Get Order",
+            "description": {
+              "content": "Retrieve a single order by its identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "order",
+                "3",
+                "orders",
+                "1",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) The order identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "afdfd174-d1bf-4798-8754-6115dbd1b670",
+              "name": "The order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "order",
+                    "3",
+                    "orders",
+                    "1",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) The order identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orderLines\": [\n    {\n      \"productId\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"quantity\": {\n        \"unitOfMeasure\": \"EA\",\n        \"unitOfMeasureLabel\": \"<string>\",\n        \"value\": \"<number>\"\n      },\n      \"unitPrice\": \"<double>\"\n    },\n    {\n      \"productId\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"quantity\": {\n        \"unitOfMeasure\": \"EA\",\n        \"unitOfMeasureLabel\": \"<string>\",\n        \"value\": \"<number>\"\n      },\n      \"unitPrice\": \"<double>\"\n    }\n  ],\n  \"channel\": \"Web\",\n  \"comments\": \"<string>\",\n  \"customer\": {\n    \"email\": \"<email>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\"\n  },\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4e81752-e1cb-4c14-a1b7-03b49c79ad0c",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "order",
+                    "3",
+                    "orders",
+                    "1",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) The order identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd589b85-5629-43c5-aaa7-e2a41e35de99",
+          "name": "Find Orders",
+          "request": {
+            "name": "Find Orders",
+            "description": {
+              "content": "Search for orders by criteria such as customer email, with paging.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "order",
+                "3",
+                "orders",
+                "1",
+                "find"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageNumber",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "10"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerEmail\": \"<email>\",\n  \"returnFullOrders\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "da31898c-dc61-460c-bf66-1c2350a5f5f0",
+              "name": "A page of matching orders.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "order",
+                    "3",
+                    "orders",
+                    "1",
+                    "find"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageNumber",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerEmail\": \"<email>\",\n  \"returnFullOrders\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pageContent\": [\n    {\n      \"orderLines\": [\n        {\n          \"productId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"quantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unitPrice\": \"<double>\"\n        },\n        {\n          \"productId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"quantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unitPrice\": \"<double>\"\n        }\n      ],\n      \"channel\": \"Web\",\n      \"comments\": \"<string>\",\n      \"customer\": {\n        \"email\": \"<email>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\"\n      },\n      \"id\": \"string\"\n    },\n    {\n      \"orderLines\": [\n        {\n          \"productId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"quantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unitPrice\": \"<double>\"\n        },\n        {\n          \"productId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"quantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unitPrice\": \"<double>\"\n        }\n      ],\n      \"channel\": \"Web\",\n      \"comments\": \"<string>\",\n      \"customer\": {\n        \"email\": \"<email>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\"\n      },\n      \"id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ncr.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e1b0619b-c6f6-4b3a-a462-f8e4cd79c79a",
+    "name": "NCR Voyix Commerce Platform APIs (Aloha) Catalog Order API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST APIs for Aloha POS via the NCR Voyix Developer Experience (Business Services Platform). Covers Site provisioning, Catalog item and item-price management, Menu details, and Order creation/lookup. Requests are signed with HMAC SHA-512 AccessKey authentication and scoped with the nep-organization and nep-enterprise-unit headers. Paths and schemas in this specification were reconstructed from the publicly published NCR Voyix sample applications (NCRVoyix-Corporation/sample-app-burgers, ncr-retail-demo, ncr-bsp-hmac); consult developer.ncrvoyix.com for the authoritative contract.\n\nContact Support:\n Name: NCR Voyix Developer Experience",
+      "type": "text/plain"
+    }
+  }
+}

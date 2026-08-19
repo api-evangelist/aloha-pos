@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NCR Voyix Commerce Platform APIs (Aloha) Catalog Menu API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Menu",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Menu Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ncr.com/menu/v2/menu-details/:menuMapping",
+            "params": [
+              {
+                "name": "menuMapping",
+                "value": "",
+                "type": "path",
+                "description": "The menu mapping identifier for the site/location."
+              }
+            ]
+          },
+          "docs": "Retrieve the full menu structure (categories, items, modifiers) for a menu mapping."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

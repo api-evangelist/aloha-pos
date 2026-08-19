@@ -1,0 +1,586 @@
+{
+  "item": [
+    {
+      "id": "e5658b7b-5a44-4026-89d3-28c054ed4657",
+      "name": "Site",
+      "description": {
+        "content": "Site (location) provisioning and lookup.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8c8efd70-cfec-484d-b46d-4bbcc6e9e105",
+          "name": "Create Site",
+          "request": {
+            "name": "Create Site",
+            "description": {
+              "content": "Create a new site (location) on the NCR Voyix Platform.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "site",
+                "sites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"siteName\": \"<string>\",\n  \"enterpriseUnitName\": \"<string>\",\n  \"status\": \"<string>\",\n  \"coordinates\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fe91fd3b-89d5-48c2-b660-f9f0de3db0ac",
+              "name": "The created site.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "site",
+                    "sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"siteName\": \"<string>\",\n  \"enterpriseUnitName\": \"<string>\",\n  \"status\": \"<string>\",\n  \"coordinates\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"siteName\": \"<string>\",\n  \"enterpriseUnitName\": \"<string>\",\n  \"status\": \"<string>\",\n  \"coordinates\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5729b40e-db3b-4e12-b06b-80029ce9d017",
+              "name": "The created site.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "site",
+                    "sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"siteName\": \"<string>\",\n  \"enterpriseUnitName\": \"<string>\",\n  \"status\": \"<string>\",\n  \"coordinates\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"siteName\": \"<string>\",\n  \"enterpriseUnitName\": \"<string>\",\n  \"status\": \"<string>\",\n  \"coordinates\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ffc0e757-9e55-4990-b8f9-6be36616374d",
+          "name": "Find Sites By Criteria",
+          "request": {
+            "name": "Find Sites By Criteria",
+            "description": {
+              "content": "Search for sites matching the supplied criteria, with paging.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "site",
+                "sites",
+                "find-by-criteria"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"criteria\": {\n    \"status\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3851266d-5f81-47c2-8dee-248b1ebc88d7",
+              "name": "A page of matching sites.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "site",
+                    "sites",
+                    "find-by-criteria"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"criteria\": {\n    \"status\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pageContent\": [\n    {\n      \"siteName\": \"<string>\",\n      \"enterpriseUnitName\": \"<string>\",\n      \"status\": \"<string>\",\n      \"coordinates\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"id\": \"string\"\n    },\n    {\n      \"siteName\": \"<string>\",\n      \"enterpriseUnitName\": \"<string>\",\n      \"status\": \"<string>\",\n      \"coordinates\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "32e96e38-f46f-4a4c-96b9-c83220afecc3",
+          "name": "Get Site",
+          "request": {
+            "name": "Get Site",
+            "description": {
+              "content": "Retrieve a single site by its identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "site",
+                "sites",
+                ":siteId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "siteId",
+                  "description": "(Required) The alphanumeric site identifier (not the site name)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9edd8973-3ba3-4ec3-82ca-bddeed57fcdc",
+              "name": "The site.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "site",
+                    "sites",
+                    ":siteId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteId",
+                      "description": "(Required) The alphanumeric site identifier (not the site name)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"siteName\": \"<string>\",\n  \"enterpriseUnitName\": \"<string>\",\n  \"status\": \"<string>\",\n  \"coordinates\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bbdbd3b5-4a36-4d97-8ef6-dfc38847339b",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "site",
+                    "sites",
+                    ":siteId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteId",
+                      "description": "(Required) The alphanumeric site identifier (not the site name)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1bb4b699-8a59-4006-afd3-8621ae9b3412",
+          "name": "Update Site",
+          "request": {
+            "name": "Update Site",
+            "description": {
+              "content": "Update a site by its identifier. Set status to INACTIVE to logically delete the site (there is no hard delete).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "site",
+                "sites",
+                ":siteId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "siteId",
+                  "description": "(Required) The alphanumeric site identifier (not the site name)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"siteName\": \"<string>\",\n  \"enterpriseUnitName\": \"<string>\",\n  \"status\": \"<string>\",\n  \"coordinates\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c089bc83-76b3-469c-9813-3a20a01359db",
+              "name": "The updated site.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "site",
+                    "sites",
+                    ":siteId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteId",
+                      "description": "(Required) The alphanumeric site identifier (not the site name)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"siteName\": \"<string>\",\n  \"enterpriseUnitName\": \"<string>\",\n  \"status\": \"<string>\",\n  \"coordinates\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"siteName\": \"<string>\",\n  \"enterpriseUnitName\": \"<string>\",\n  \"status\": \"<string>\",\n  \"coordinates\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ncr.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "257afc5b-8975-4446-a17f-60826450bada",
+    "name": "NCR Voyix Commerce Platform APIs (Aloha) Catalog Site API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST APIs for Aloha POS via the NCR Voyix Developer Experience (Business Services Platform). Covers Site provisioning, Catalog item and item-price management, Menu details, and Order creation/lookup. Requests are signed with HMAC SHA-512 AccessKey authentication and scoped with the nep-organization and nep-enterprise-unit headers. Paths and schemas in this specification were reconstructed from the publicly published NCR Voyix sample applications (NCRVoyix-Corporation/sample-app-burgers, ncr-retail-demo, ncr-bsp-hmac); consult developer.ncrvoyix.com for the authoritative contract.\n\nContact Support:\n Name: NCR Voyix Developer Experience",
+      "type": "text/plain"
+    }
+  }
+}
