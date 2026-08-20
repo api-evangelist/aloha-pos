@@ -21,6 +21,11 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/aloha-pos.png
 tags:
+  - Point-of-Sale
+  - Restaurant
+  - Hospitality
+  - NCR
+tags_raw:
   - POS
   - Restaurant
   - Hospitality
@@ -37,6 +42,11 @@ apis:
     orders into a store's local instance. Used for menu, orders, employees, and payments.
   humanURL: https://developer.ncrvoyix.com/portals/dev-portal/api-explorer/details/2021/how-to
   tags:
+  - REST
+  - Restaurant
+  - Cloud
+  - In-Store
+  tags_raw:
   - REST
   - Restaurant
   - Cloud
@@ -71,6 +81,8 @@ apis:
   humanURL: https://developer.ncrvoyix.com/
   baseURL: https://api.ncr.com
   tags:
+  - Menus
+  tags_raw:
   - Menu
   properties:
   - type: OpenAPI
