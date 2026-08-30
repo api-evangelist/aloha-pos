@@ -33,7 +33,7 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/aloha-pos.png
 tags:
-  - Point-of-Sale
+  - POS
   - Restaurant
   - Hospitality
   - NCR
@@ -57,7 +57,7 @@ apis:
   - REST
   - Restaurant
   - Cloud
-  - In-Store
+  - InStore
   tags_raw:
   - REST
   - Restaurant
