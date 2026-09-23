@@ -1,0 +1,29 @@
+# Front Door AI Index — aloha-pos — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: aloha-pos
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.ncrvoyix.com
+  final_host: www.ncrvoyix.com
+  ownership: own
+  owner: aloha-pos
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 12
+  host_score: 12
+  density: 9.63
+  words: 1246
+  tiers:
+    agentic: 3
+    core: 9
+    model: 0
+  ambiguous: 2
+  top_terms:
+    AI: 9
+    agentic: 2
+    AI agent: 1
+    agent: 1
+    intelligence: 1

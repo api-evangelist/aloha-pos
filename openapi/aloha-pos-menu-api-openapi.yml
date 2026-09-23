@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: NCR Voyix Commerce Platform APIs (Aloha) Catalog Menu API
-  description: REST APIs for Aloha POS via the NCR Voyix Developer Experience (Business Services Platform). Covers Site provisioning, Catalog item and item-price management, Menu details, and Order creation/lookup. Requests are signed with HMAC SHA-512 AccessKey authentication and scoped with the nep-organization and nep-enterprise-unit headers. Paths and schemas in this specification were reconstructed from the publicly published NCR Voyix sample applications (NCRVoyix-Corporation/sample-app-burgers, ncr-retail-demo, ncr-bsp-hmac); consult developer.ncrvoyix.com for the authoritative contract.
+  title: NCR Voyix Commerce Platform APIs (Aloha) Menu API
+  description: REST APIs for Aloha POS via the NCR Voyix Developer Experience (Business Services Platform).
   version: '1.0'
   contact:
     name: NCR Voyix Developer Experience
