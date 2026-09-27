@@ -167,6 +167,75 @@ paths:
                       $ref: '#/components/schemas/ItemPrice'
 components:
   schemas:
+    LocalizedText:
+      type: object
+      description: A set of locale-specific values.
+      properties:
+        values:
+          type: array
+          items:
+            type: object
+            properties:
+              locale:
+                type: string
+                example: en-US
+              value:
+                type: string
+    ItemPage:
+      type: object
+      properties:
+        pageContent:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    Item:
+      allOf:
+      - $ref: '#/components/schemas/ItemInput'
+      - type: object
+        properties:
+          itemId:
+            type: object
+            additionalProperties:
+              type: string
+    ItemPrice:
+      allOf:
+      - $ref: '#/components/schemas/ItemPriceInput'
+      - type: object
+        properties:
+          priceId:
+            type: object
+            properties:
+              itemCode:
+                type: string
+    ItemInput:
+      type: object
+      properties:
+        version:
+          type: integer
+          description: Optimistic-concurrency version; must increase on each update.
+        shortDescription:
+          $ref: '#/components/schemas/LocalizedText'
+        status:
+          $ref: '#/components/schemas/Status'
+        merchandiseCategory:
+          type: string
+        departmentId:
+          type: string
+      required:
+      - version
+      - status
+    Status:
+      type: string
+      enum:
+      - ACTIVE
+      - INACTIVE
     ItemPriceInput:
       type: object
       properties:
@@ -186,75 +255,13 @@ components:
       required:
       - version
       - price
-    ItemInput:
-      type: object
-      properties:
-        version:
-          type: integer
-          description: Optimistic-concurrency version; must increase on each update.
-        shortDescription:
-          $ref: '#/components/schemas/LocalizedText'
-        status:
-          $ref: '#/components/schemas/Status'
-        merchandiseCategory:
-          type: string
-        departmentId:
-          type: string
-      required:
-      - version
-      - status
-    LocalizedText:
-      type: object
-      description: A set of locale-specific values.
-      properties:
-        values:
-          type: array
-          items:
-            type: object
-            properties:
-              locale:
-                type: string
-                example: en-US
-              value:
-                type: string
-    ItemPrice:
-      allOf:
-      - $ref: '#/components/schemas/ItemPriceInput'
-      - type: object
-        properties:
-          priceId:
-            type: object
-            properties:
-              itemCode:
-                type: string
-    Item:
-      allOf:
-      - $ref: '#/components/schemas/ItemInput'
-      - type: object
-        properties:
-          itemId:
-            type: object
-            additionalProperties:
-              type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    ItemPage:
-      type: object
-      properties:
-        pageContent:
-          type: array
-          items:
-            $ref: '#/components/schemas/Item'
-    Status:
-      type: string
-      enum:
-      - ACTIVE
-      - INACTIVE
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     ItemCode:
       name: itemCode
@@ -263,13 +270,6 @@ components:
       description: The catalog item code (spaces are not permitted).
       schema:
         type: string
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     hmacAccessKey:
       type: apiKey

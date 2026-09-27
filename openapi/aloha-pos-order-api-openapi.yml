@@ -115,22 +115,34 @@ paths:
                     items:
                       $ref: '#/components/schemas/Order'
 components:
-  parameters:
-    NepServiceVersion:
-      name: nep-service-version
-      in: header
-      required: false
-      description: The targeted service version (e.g. "3:1").
-      schema:
-        type: string
-    NepEnterpriseUnit:
-      name: nep-enterprise-unit
-      in: header
-      required: true
-      description: Identifier of the enterprise unit (location) the request applies to.
-      schema:
-        type: string
   schemas:
+    Quantity:
+      type: object
+      properties:
+        unitOfMeasure:
+          type: string
+          example: EA
+        unitOfMeasureLabel:
+          type: string
+        value:
+          type: number
+    OrderLine:
+      type: object
+      properties:
+        productId:
+          $ref: '#/components/schemas/ProductId'
+        quantity:
+          $ref: '#/components/schemas/Quantity'
+        unitPrice:
+          type: number
+          format: double
+    ProductId:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: string
     OrderInput:
       type: object
       properties:
@@ -171,33 +183,6 @@ components:
           type: string
         message:
           type: string
-    ProductId:
-      type: object
-      properties:
-        type:
-          type: string
-        value:
-          type: string
-    OrderLine:
-      type: object
-      properties:
-        productId:
-          $ref: '#/components/schemas/ProductId'
-        quantity:
-          $ref: '#/components/schemas/Quantity'
-        unitPrice:
-          type: number
-          format: double
-    Quantity:
-      type: object
-      properties:
-        unitOfMeasure:
-          type: string
-          example: EA
-        unitOfMeasureLabel:
-          type: string
-        value:
-          type: number
   responses:
     NotFound:
       description: The requested resource was not found.
@@ -205,6 +190,21 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    NepEnterpriseUnit:
+      name: nep-enterprise-unit
+      in: header
+      required: true
+      description: Identifier of the enterprise unit (location) the request applies to.
+      schema:
+        type: string
+    NepServiceVersion:
+      name: nep-service-version
+      in: header
+      required: false
+      description: The targeted service version (e.g. "3:1").
+      schema:
+        type: string
   securitySchemes:
     hmacAccessKey:
       type: apiKey
