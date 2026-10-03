@@ -116,6 +116,13 @@ paths:
                       $ref: '#/components/schemas/Order'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     Quantity:
       type: object
       properties:
@@ -126,6 +133,16 @@ components:
           type: string
         value:
           type: number
+    Customer:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        firstName:
+          type: string
+        lastName:
+          type: string
     OrderLine:
       type: object
       properties:
@@ -136,13 +153,6 @@ components:
         unitPrice:
           type: number
           format: double
-    ProductId:
-      type: object
-      properties:
-        type:
-          type: string
-        value:
-          type: string
     OrderInput:
       type: object
       properties:
@@ -159,16 +169,6 @@ components:
             $ref: '#/components/schemas/OrderLine'
       required:
       - orderLines
-    Customer:
-      type: object
-      properties:
-        email:
-          type: string
-          format: email
-        firstName:
-          type: string
-        lastName:
-          type: string
     Order:
       allOf:
       - $ref: '#/components/schemas/OrderInput'
@@ -176,28 +176,14 @@ components:
         properties:
           id:
             type: string
-    Error:
+    ProductId:
       type: object
       properties:
-        code:
+        type:
           type: string
-        message:
+        value:
           type: string
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
-    NepEnterpriseUnit:
-      name: nep-enterprise-unit
-      in: header
-      required: true
-      description: Identifier of the enterprise unit (location) the request applies to.
-      schema:
-        type: string
     NepServiceVersion:
       name: nep-service-version
       in: header
@@ -205,6 +191,20 @@ components:
       description: The targeted service version (e.g. "3:1").
       schema:
         type: string
+    NepEnterpriseUnit:
+      name: nep-enterprise-unit
+      in: header
+      required: true
+      description: Identifier of the enterprise unit (location) the request applies to.
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     hmacAccessKey:
       type: apiKey

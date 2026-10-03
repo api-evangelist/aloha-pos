@@ -167,27 +167,25 @@ paths:
                       $ref: '#/components/schemas/ItemPrice'
 components:
   schemas:
-    LocalizedText:
-      type: object
-      description: A set of locale-specific values.
-      properties:
-        values:
-          type: array
-          items:
-            type: object
-            properties:
-              locale:
-                type: string
-                example: en-US
-              value:
-                type: string
-    ItemPage:
+    ItemPriceInput:
       type: object
       properties:
-        pageContent:
-          type: array
-          items:
-            $ref: '#/components/schemas/Item'
+        version:
+          type: integer
+        price:
+          type: number
+          format: double
+        currency:
+          type: string
+          example: US Dollar
+        effectiveDate:
+          type: string
+          format: date-time
+        status:
+          $ref: '#/components/schemas/Status'
+      required:
+      - version
+      - price
     Error:
       type: object
       properties:
@@ -195,25 +193,13 @@ components:
           type: string
         message:
           type: string
-    Item:
-      allOf:
-      - $ref: '#/components/schemas/ItemInput'
-      - type: object
-        properties:
-          itemId:
-            type: object
-            additionalProperties:
-              type: string
-    ItemPrice:
-      allOf:
-      - $ref: '#/components/schemas/ItemPriceInput'
-      - type: object
-        properties:
-          priceId:
-            type: object
-            properties:
-              itemCode:
-                type: string
+    ItemPage:
+      type: object
+      properties:
+        pageContent:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
     ItemInput:
       type: object
       properties:
@@ -236,25 +222,39 @@ components:
       enum:
       - ACTIVE
       - INACTIVE
-    ItemPriceInput:
+    Item:
+      allOf:
+      - $ref: '#/components/schemas/ItemInput'
+      - type: object
+        properties:
+          itemId:
+            type: object
+            additionalProperties:
+              type: string
+    LocalizedText:
       type: object
+      description: A set of locale-specific values.
       properties:
-        version:
-          type: integer
-        price:
-          type: number
-          format: double
-        currency:
-          type: string
-          example: US Dollar
-        effectiveDate:
-          type: string
-          format: date-time
-        status:
-          $ref: '#/components/schemas/Status'
-      required:
-      - version
-      - price
+        values:
+          type: array
+          items:
+            type: object
+            properties:
+              locale:
+                type: string
+                example: en-US
+              value:
+                type: string
+    ItemPrice:
+      allOf:
+      - $ref: '#/components/schemas/ItemPriceInput'
+      - type: object
+        properties:
+          priceId:
+            type: object
+            properties:
+              itemCode:
+                type: string
   responses:
     NotFound:
       description: The requested resource was not found.
