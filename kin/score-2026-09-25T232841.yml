@@ -1,24 +1,22 @@
-# Kin Score artifact — aloha-pos — 2026-08-25T154045
+# Kin Score artifact — aloha-pos — 2026-09-25T232841
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: aloha-pos
-  schema_version: 0.14.0
-  scored_at: '2026-08-25'
-  run_ts: 2026-08-25T154045
-  composite: 20.3
-  band: emerging
+  schema_version: 0.23.0
+  scored_at: '2026-09-25'
+  run_ts: 2026-09-25T232841
+  composite: 33.2
+  band: thin
   facets:
-    discoverability: 55.6
-    contract_quality: 19.1
-    governance: 28.8
+    discoverability: 48.2
+    contract_quality: 57.9
+    contract_governance: 27.3
     operational_transparency: 7.9
-    developer_ergonomics: 14.3
-    commercial_clarity: 13.2
-    contract_governance: 28.8
+    developer_ergonomics: 26.2
     access_clarity: 13.2
   agent_readiness:
-    score: 19.8
+    score: 19.2
     band: agent-aware
     dimensions:
       spec_presence: true
@@ -28,8 +26,8 @@ kin_score:
       auth_clarity: bearer
       idempotency: false
       error_semantics: false
-      openapi_examples: false
-      rate_limit_signal: documented
+      openapi_examples: documented
+      rate_limit_signal: derived
       event_surface_described: false
       agent_skills: false
       well_known_catalog: false
@@ -40,10 +38,16 @@ kin_score:
       protected_resource_metadata: false
       dynamic_client_registration: false
       agentic_commerce: false
+  regulatory:
+    applies: true
+    regime: Horizontal (data, software, accessibility, platform)
+    regime_id: horizontal
+    score: 16.7
+    matched_via: fallback
   provenance:
     agentic_access: derived
     contracts:
       total: 4
-      derived: 4
-      coverage: 100.0
+      derived: 0
+      coverage: 0.0
       callable: 100.0
