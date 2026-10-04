@@ -135,6 +135,13 @@ components:
         longitude:
           type: number
           format: double
+    Site:
+      allOf:
+      - $ref: '#/components/schemas/SiteInput'
+      - type: object
+        properties:
+          id:
+            type: string
     Error:
       type: object
       properties:
@@ -162,13 +169,6 @@ components:
       enum:
       - ACTIVE
       - INACTIVE
-    Site:
-      allOf:
-      - $ref: '#/components/schemas/SiteInput'
-      - type: object
-        properties:
-          id:
-            type: string
   responses:
     NotFound:
       description: The requested resource was not found.

@@ -115,6 +115,21 @@ paths:
                     items:
                       $ref: '#/components/schemas/Order'
 components:
+  parameters:
+    NepServiceVersion:
+      name: nep-service-version
+      in: header
+      required: false
+      description: The targeted service version (e.g. "3:1").
+      schema:
+        type: string
+    NepEnterpriseUnit:
+      name: nep-enterprise-unit
+      in: header
+      required: true
+      description: Identifier of the enterprise unit (location) the request applies to.
+      schema:
+        type: string
   schemas:
     Error:
       type: object
@@ -123,36 +138,6 @@ components:
           type: string
         message:
           type: string
-    Quantity:
-      type: object
-      properties:
-        unitOfMeasure:
-          type: string
-          example: EA
-        unitOfMeasureLabel:
-          type: string
-        value:
-          type: number
-    Customer:
-      type: object
-      properties:
-        email:
-          type: string
-          format: email
-        firstName:
-          type: string
-        lastName:
-          type: string
-    OrderLine:
-      type: object
-      properties:
-        productId:
-          $ref: '#/components/schemas/ProductId'
-        quantity:
-          $ref: '#/components/schemas/Quantity'
-        unitPrice:
-          type: number
-          format: double
     OrderInput:
       type: object
       properties:
@@ -183,21 +168,36 @@ components:
           type: string
         value:
           type: string
-  parameters:
-    NepServiceVersion:
-      name: nep-service-version
-      in: header
-      required: false
-      description: The targeted service version (e.g. "3:1").
-      schema:
-        type: string
-    NepEnterpriseUnit:
-      name: nep-enterprise-unit
-      in: header
-      required: true
-      description: Identifier of the enterprise unit (location) the request applies to.
-      schema:
-        type: string
+    Quantity:
+      type: object
+      properties:
+        unitOfMeasure:
+          type: string
+          example: EA
+        unitOfMeasureLabel:
+          type: string
+        value:
+          type: number
+    OrderLine:
+      type: object
+      properties:
+        productId:
+          $ref: '#/components/schemas/ProductId'
+        quantity:
+          $ref: '#/components/schemas/Quantity'
+        unitPrice:
+          type: number
+          format: double
+    Customer:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        firstName:
+          type: string
+        lastName:
+          type: string
   responses:
     NotFound:
       description: The requested resource was not found.
