@@ -7,14 +7,18 @@ front_door_ai:
   probed_at: '2026-09-17'
   host: www.ncrvoyix.com
   final_host: www.ncrvoyix.com
-  ownership: own
-  owner: aloha-pos
-  shares_host_with: null
+  ownership: unresolved
+  owner: null
+  shares_host_with:
+  - ncr
   inherited_from: null
+  alias_of: null
   verdict: scored
-  score: 12
+  score: null
+  band: null
+  band_label: null
   host_score: 12
-  density: 9.63
+  density: null
   words: 1246
   tiers:
     agentic: 3
