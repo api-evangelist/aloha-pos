@@ -161,7 +161,7 @@ common:
   - type: Authentication
     url: authentication/aloha-pos-authentication.yml
   - type: Website
-    url: https://www.ncrvoyix.com/restaurants/aloha-cloud
+    url: https://www.alohapos.com/
   - type: Developer
     url: https://developer.ncrvoyix.com/
   - type: Documentation
