@@ -115,22 +115,24 @@ paths:
                     items:
                       $ref: '#/components/schemas/Order'
 components:
-  parameters:
-    NepServiceVersion:
-      name: nep-service-version
-      in: header
-      required: false
-      description: The targeted service version (e.g. "3:1").
-      schema:
-        type: string
-    NepEnterpriseUnit:
-      name: nep-enterprise-unit
-      in: header
-      required: true
-      description: Identifier of the enterprise unit (location) the request applies to.
-      schema:
-        type: string
   schemas:
+    Quantity:
+      type: object
+      properties:
+        unitOfMeasure:
+          type: string
+          example: EA
+        unitOfMeasureLabel:
+          type: string
+        value:
+          type: number
+    ProductId:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: string
     Error:
       type: object
       properties:
@@ -138,6 +140,16 @@ components:
           type: string
         message:
           type: string
+    OrderLine:
+      type: object
+      properties:
+        productId:
+          $ref: '#/components/schemas/ProductId'
+        quantity:
+          $ref: '#/components/schemas/Quantity'
+        unitPrice:
+          type: number
+          format: double
     OrderInput:
       type: object
       properties:
@@ -154,40 +166,6 @@ components:
             $ref: '#/components/schemas/OrderLine'
       required:
       - orderLines
-    Order:
-      allOf:
-      - $ref: '#/components/schemas/OrderInput'
-      - type: object
-        properties:
-          id:
-            type: string
-    ProductId:
-      type: object
-      properties:
-        type:
-          type: string
-        value:
-          type: string
-    Quantity:
-      type: object
-      properties:
-        unitOfMeasure:
-          type: string
-          example: EA
-        unitOfMeasureLabel:
-          type: string
-        value:
-          type: number
-    OrderLine:
-      type: object
-      properties:
-        productId:
-          $ref: '#/components/schemas/ProductId'
-        quantity:
-          $ref: '#/components/schemas/Quantity'
-        unitPrice:
-          type: number
-          format: double
     Customer:
       type: object
       properties:
@@ -198,6 +176,28 @@ components:
           type: string
         lastName:
           type: string
+    Order:
+      allOf:
+      - $ref: '#/components/schemas/OrderInput'
+      - type: object
+        properties:
+          id:
+            type: string
+  parameters:
+    NepEnterpriseUnit:
+      name: nep-enterprise-unit
+      in: header
+      required: true
+      description: Identifier of the enterprise unit (location) the request applies to.
+      schema:
+        type: string
+    NepServiceVersion:
+      name: nep-service-version
+      in: header
+      required: false
+      description: The targeted service version (e.g. "3:1").
+      schema:
+        type: string
   responses:
     NotFound:
       description: The requested resource was not found.

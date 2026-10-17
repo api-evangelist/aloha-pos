@@ -126,22 +126,6 @@ paths:
                 $ref: '#/components/schemas/Site'
 components:
   schemas:
-    Coordinates:
-      type: object
-      properties:
-        latitude:
-          type: number
-          format: double
-        longitude:
-          type: number
-          format: double
-    Site:
-      allOf:
-      - $ref: '#/components/schemas/SiteInput'
-      - type: object
-        properties:
-          id:
-            type: string
     Error:
       type: object
       properties:
@@ -169,6 +153,22 @@ components:
       enum:
       - ACTIVE
       - INACTIVE
+    Site:
+      allOf:
+      - $ref: '#/components/schemas/SiteInput'
+      - type: object
+        properties:
+          id:
+            type: string
+    Coordinates:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
   responses:
     NotFound:
       description: The requested resource was not found.
