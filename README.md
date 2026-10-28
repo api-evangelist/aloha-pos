@@ -1,4 +1,4 @@
-# Aloha POS (aloha-pos)
+# Aloha POS
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,86 +66,169 @@
 
 Aloha POS is a restaurant point-of-sale platform from NCR Voyix. The NCR Voyix Developer Experience exposes APIs for Aloha (cloud and on-premise) covering site, store, menu, order, payment, and reporting integrations as part of the broader NCR Voyix Commerce Platform.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/aloha-pos/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/aloha-pos/refs/heads/main/apis.yml)
+**Areas:** Point-of-Sale · Restaurant · Hospitality · NCR
 
-## Tags
+## Aloha POS on APIs.io
 
-- POS
-- Restaurant
-- Hospitality
-- NCR
+Everything profiled for Aloha POS is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/aloha-pos/](https://apis.io/providers/aloha-pos/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (5)
 
-- **Created:** 2026-05-08
-- **Modified:** 2026-06-02
+- [Aloha Cloud APIs](https://apis.io/apis/aloha-pos/aloha-cloud-api/) — Aloha Cloud-specific endpoints including the In-Store API server (gRPC, default port 50051, 127.0.0.1) for local POS connectivity and the Business Services…
+- [Aloha POS Catalog API](https://apis.io/apis/aloha-pos/aloha-pos-catalog-api/) — Item and item-price management.
+- [Aloha POS Menu API](https://apis.io/apis/aloha-pos/aloha-pos-menu-api/) — Menu structure and details.
+- [Aloha POS Order API](https://apis.io/apis/aloha-pos/aloha-pos-order-api/) — Order creation and lookup.
+- [Aloha POS Site API](https://apis.io/apis/aloha-pos/aloha-pos-site-api/) — Site (location) provisioning and lookup.
 
-## APIs
+### Published properties
 
-### NCR Voyix Commerce Platform APIs (Aloha)
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-REST APIs for Aloha POS (Aloha Cloud, Aloha Essentials) via the NCR Voyix Developer Experience (Business Services Platform). Covers Site provisioning, Catalog item and item-price management, Menu details, Order creation/lookup, Security, and Provisioning services. Requests are signed with HMAC (SHA-512) AccessKey authentication and scoped with nep-organization and nep-enterprise-unit headers against api.ncr.com (production) / gateway-staging.ncrcloud.com (staging).
+#### Agentic access (1)
 
-- **Human URL:** [https://developer.ncrvoyix.com/](https://developer.ncrvoyix.com/)
-- **Base URL:** `https://api.ncr.com`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Aloha Pos Agentic Access](https://apis.io/agentic-access/aloha-pos/aloha-pos-agentic-access/)
 
-- REST
-- Restaurant
-- POS
-- Catalog
-- Order
-- Menu
-- Site
+#### JSON Schema (4)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://developer.ncrvoyix.com/)
-- [OpenAPI](openapi/ncr-voyix-platform-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/ncr-voyix-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ncr-voyix-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Getting Started](https://developer.ncrvoyix.com/portals/dev-portal/help-center/documentation/getting-started-with-ncr-apis)
-- [Code Examples](https://github.com/NCRVoyix-Corporation/sample-app-burgers)
-- [Code Examples](https://github.com/NCRVoyix-Corporation/ncr-retail-demo)
-- [Code Examples](https://github.com/NCRVoyix-Corporation/ncr-bsp-hmac)
+- [Item](https://apis.io/schemas/aloha-pos/ncr-voyix-platform-item/)
+- [ItemPrice](https://apis.io/schemas/aloha-pos/ncr-voyix-platform-item-price/)
+- [Order](https://apis.io/schemas/aloha-pos/ncr-voyix-platform-order/)
+- [Site](https://apis.io/schemas/aloha-pos/ncr-voyix-platform-site/)
 
-### Aloha Cloud APIs
+#### JSON Structure (4)
 
-Aloha Cloud-specific endpoints including the In-Store API server (gRPC, default port 50051, 127.0.0.1) for local POS connectivity and the Business Services Layer (BSL) Order Service for routing online/third-party orders into a store's local instance. Used for menu, orders, employees, and payments.
+Data models expressed in JSON Structure.
 
-- **Human URL:** [https://developer.ncrvoyix.com/portals/dev-portal/api-explorer/details/2021/how-to](https://developer.ncrvoyix.com/portals/dev-portal/api-explorer/details/2021/how-to)
+- [Ncr Voyix Platform Item Price Structure](https://apis.io/json-structure/aloha-pos/ncr-voyix-platform-item-price-structure/)
+- [Ncr Voyix Platform Item Structure](https://apis.io/json-structure/aloha-pos/ncr-voyix-platform-item-structure/)
+- [Ncr Voyix Platform Order Structure](https://apis.io/json-structure/aloha-pos/ncr-voyix-platform-order-structure/)
+- [Ncr Voyix Platform Site Structure](https://apis.io/json-structure/aloha-pos/ncr-voyix-platform-site-structure/)
 
-#### Tags
+#### JSON-LD (1)
 
-- REST
-- Restaurant
-- Cloud
-- InStore
+Linked-data contexts for the provider's vocabulary.
 
-#### Properties
+- [Aloha Pos Ncr Voyix Platform Context](https://apis.io/jsonld/aloha-pos/aloha-pos-ncr-voyix-platform-context/)
 
-- [Documentation](https://developer.ncrvoyix.com/portals/dev-portal/api-explorer/details/2021/how-to)
-- [Postman Collection](collections/ncr-voyix-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ncr-voyix-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Vocabulary (1)
 
-## Common Properties
+The provider's domain terms, defined.
 
-- [Website](https://www.ncrvoyix.com/restaurants/aloha-cloud)
-- [Developer](https://developer.ncrvoyix.com/)
+- [Aloha Pos Vocabulary](https://apis.io/vocabularies/aloha-pos/aloha-pos-vocabulary/)
+
+#### Examples (4)
+
+Example requests and responses.
+
+- [Ncr Voyix Platform Create Order Example](https://apis.io/examples/aloha-pos/ncr-voyix-platform-create-order-example/)
+- [Ncr Voyix Platform Create Site Example](https://apis.io/examples/aloha-pos/ncr-voyix-platform-create-site-example/)
+- [Ncr Voyix Platform Put Catalog Item Example](https://apis.io/examples/aloha-pos/ncr-voyix-platform-put-catalog-item-example/)
+- [Ncr Voyix Platform Put Item Price Example](https://apis.io/examples/aloha-pos/ncr-voyix-platform-put-item-price-example/)
+
+#### Collections (5)
+
+Postman and Open Collection request collections.
+
+- [NCR Voyix Commerce Platform APIs (Aloha) Catalog API](https://apis.io/collections/aloha-pos/open-aloha-pos-catalog-api/)
+- [NCR Voyix Commerce Platform APIs (Aloha) Catalog Menu API](https://apis.io/collections/aloha-pos/open-aloha-pos-menu-api/)
+- [NCR Voyix Commerce Platform APIs (Aloha) Catalog Order API](https://apis.io/collections/aloha-pos/open-aloha-pos-order-api/)
+- [NCR Voyix Commerce Platform APIs (Aloha) Catalog Site API](https://apis.io/collections/aloha-pos/open-aloha-pos-site-api/)
+- [NCR Voyix Commerce Platform APIs (Aloha)](https://apis.io/collections/aloha-pos/open-ncr-voyix-platform/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Aloha POS — jsonschema rules](https://apis.io/rules/aloha-pos/aloha-pos-jsonschema-spectral-rules/)
+- [Aloha POS — ncr voyix platform rules](https://apis.io/rules/aloha-pos/ncr-voyix-platform-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Aloha Pos Authentication](https://apis.io/security/aloha-pos/aloha-pos-authentication/)
+- [Aloha Pos Domain Security](https://apis.io/security/aloha-pos/aloha-pos-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Aloha Pos Plans Pricing](https://apis.io/plans/aloha-pos/aloha-pos-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Aloha Pos Rate Limits](https://apis.io/rate-limits/aloha-pos/aloha-pos-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Aloha Pos Finops](https://apis.io/finops/aloha-pos/aloha-pos-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.alohapos.com/)
 - [Documentation](https://docs.ncrvoyix.com/restaurant/aloha-pos)
-- [GitHub Organization](https://github.com/NCRVoyix-Corporation)
-- [A P I Explorer](https://developer.ncrvoyix.com/portals/dev-portal/api-explorer)
-- [Authentication](https://github.com/NCRVoyix-Corporation/ncr-bsp-hmac)
-- [Rules](rules/ncr-voyix-platform-rules.yml)
-- [JSON Schema](json-schema/) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/aloha-pos-ncr-voyix-platform-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Vocabulary](vocabulary/aloha-pos-vocabulary.yml)
-- [Plans](plans/aloha-pos-plans-pricing.yml)
-- [Rate Limits](rate-limits/aloha-pos-rate-limits.yml)
-- [Fin Ops](finops/aloha-pos-finops.yml)
+- [Blog](https://www.ncrvoyix.com/resources/blog)
+- [GitHub](https://github.com/NCRVoyix-Corporation)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 31.7** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 48.2 |
+| Contract quality | 57.9 |
+| Contract governance | 27.3 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 26.2 |
+| Access clarity | 5.3 |
+
+**Agent readiness 19.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/aloha-pos/](https://apis.io/providers/aloha-pos/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Aloha POS: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/aloha-pos/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
